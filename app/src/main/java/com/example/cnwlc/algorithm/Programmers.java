@@ -24,7 +24,7 @@ public class Programmers {
     // 최대공약수와 최소공배수(Maximum common divisor and minimum common multiple.)
     public int[] getMaxAndMin(int a, int b) {
         int[] answer = new int[2];
-        if(a <= b) {
+        if (a <= b) {
             for (int j = 1; j <= b; j++) {
                 for (int i = 1; i <= a; i++) {
                     if (a % i == 0 && b % i == 0) {
@@ -47,13 +47,13 @@ public class Programmers {
     public long fibonacci(int num) {
         long answer = 0;
 
-        if(num >= 2) {
-            int[] baNum = new int[num+1];
+        if (num >= 2) {
+            int[] baNum = new int[num + 1];
             baNum[0] = 0;
             baNum[1] = 1;
 
-            for(int i=2; i<=num; i++) {
-                baNum[i] = baNum[i-1] + baNum[i-2];
+            for (int i = 2; i <= num; i++) {
+                baNum[i] = baNum[i - 1] + baNum[i - 2];
             }
 
             answer = baNum[num];
@@ -63,25 +63,25 @@ public class Programmers {
     }
 
     // 서울에서 김서방 찾기
-    public String findKim(String[] seoul){
+    public String findKim(String[] seoul) {
         //x에 김서방의 위치를 저장하세요.
         int x = 0;
 
-        for(int i=0; i<seoul.length; i++) {
-            if(seoul[i].equals("Kim")) {
+        for (int i = 0; i < seoul.length; i++) {
+            if (seoul[i].equals("Kim")) {
                 x = i;
             }
         }
 
-        return "김서방은 "+ x + "에 있다";
+        return "김서방은 " + x + "에 있다";
     }
 
     // 약수의 합
     public int sumDivisor(int num) {
         int answer = 0;
 
-        for(int i=1; i<=num; i++) {
-            if(num%i == 0) {
+        for (int i = 1; i <= num; i++) {
+            if (num % i == 0) {
                 answer += i;
             }
         }
@@ -91,18 +91,18 @@ public class Programmers {
 
     // 나누어 떨어지는 숫자 배열
     public int[] divisible(int[] array, int divisor) {
-        int j=0;
+        int j = 0;
 
-        for(int i=0; i< array.length; i++) {
-            if(array[i]%divisor == 0) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] % divisor == 0) {
                 j++;
             }
         }
         int[] ret = new int[j];
 
         j = 0;
-        for(int i=0; i< array.length; i++) {
-            if(array[i]%divisor == 0) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] % divisor == 0) {
                 ret[j] = array[i];
                 j++;
             }
@@ -116,12 +116,35 @@ public class Programmers {
         String[] dividedStr = str.split(" ");
         int value, min = Integer.valueOf(dividedStr[0]), max = Integer.valueOf(dividedStr[0]);
 
-        for(int i=1; i<dividedStr.length; i++) {
+        for (int i = 1; i < dividedStr.length; i++) {
             value = Integer.parseInt(dividedStr[i]);
-            if(min > value) min = value;
-            if(max < value) max = value;
+            if (min > value) min = value;
+            if (max < value) max = value;
         }
 
-        return min+" "+max;
+        return min + " " + max;
+    }
+
+    // 2016년
+
+    /**
+     * 2016년 1월 1일 금요일, 2016년 a월 b일은 무슨요일?
+     * 2016년은 윤년(2월29일까지 있음), 요일은 SUN, MON, TUE, WED, THU, FRI, SAT
+     */
+    public String get2016(int a, int b) {
+        int[] days = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        int[] month = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+        String[] week = {"FRI", "SAT", "SUN", "MON", "TUE", "WED", "THU"};
+
+        int totalDay = 0;
+        for (int i = 0; i < month[a]; i++) {
+            totalDay += days[i];
+        }
+
+        if(((totalDay + b) % 7) == 0) {
+            return week[(totalDay + b) % 7 +6];
+        } else {
+            return week[(totalDay + b) % 7 - 1];
+        }
     }
 }
