@@ -1,5 +1,11 @@
 package com.example.cnwlc.algorithm;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 public class Programmers {
     private Programmers() {
     }
@@ -141,10 +147,95 @@ public class Programmers {
             totalDay += days[i];
         }
 
-        if(((totalDay + b) % 7) == 0) {
-            return week[(totalDay + b) % 7 +6];
+        if (((totalDay + b) % 7) == 0) {
+            return week[(totalDay + b) % 7 + 6];
         } else {
             return week[(totalDay + b) % 7 - 1];
         }
+    }
+
+    // 가장 긴 팰린드롬(앞뒤를 뒤집어도 똑같은 문자열)
+
+    /**
+     * 문자열 s가 abcdcba 이면 7을 return
+     * abacde 이면 3을 return
+     */
+    public int getPalindrome(String s) {
+        System.out.println("getPalindrome example s = " + s);
+        int answer = 0;
+
+        List<Integer> integerList1 = new ArrayList<>();
+        for (int a = 0; a < s.length(); a++) {            // 기준 인덱스
+            for (int b = 0; b < s.length(); b++) {       // 비교 인덱스
+                if (s.charAt(a) == s.charAt(b) && b != a) {
+                    integerList1.add(a);
+                }
+            }
+        }
+
+        List<Integer> integerList2 = new ArrayList<>();
+        for (int b = 0; b < integerList1.size() - 1; b++) {
+            if ((integerList1.get(b) + 1) != integerList1.get(b + 1)) {
+                integerList2.add(integerList1.get(b) + 1);
+            }
+        }
+
+        List<Integer> resultList = new ArrayList<>();
+        if (integerList2.size() > 0) {
+            int firstResult = (integerList2.get(0) - integerList1.get(0) + 1) * 2 - 1;
+            int data = 0;
+            for (int b = 0; b < integerList2.size(); b++) {
+
+                if (b > 0) {
+                    data = (integerList2.get(b) - firstResult + 1) * 2 - 1;
+                    firstResult += data;
+                }
+                if (data == 0) {
+                    data = firstResult;
+                }
+                resultList.add(data);
+            }
+
+            Ascending ascending = new Ascending();
+            Collections.sort(resultList, ascending);
+            for (Integer integer : resultList) {
+                System.out.print(integer + " ");
+            }
+        }
+
+        return answer;
+    }
+    // 오름차순
+    class Ascending implements Comparator<Integer> {
+        @Override
+        public int compare(Integer o1, Integer o2) {
+            return o1.compareTo(o2);
+        }
+    }
+
+
+    // 같은 숫자는 싫어
+    public int[] getDontHateSameCount(int []arr) {
+        System.out.println("getDontHateSameCount arr = " + Arrays.toString(arr));
+
+        List<Integer> integerList = new ArrayList<>();
+        for(int i=0; i<arr.length-1; i++) {
+            int same = arr[i];
+            for (int j=i+1; j<arr.length; j++) {
+                if(same != arr[j]) {
+                    integerList.add(same);
+                    break;
+                } else
+                    break;
+            }
+        }
+        integerList.add(arr[arr.length-1]);
+
+        int[] answer = new int[integerList.size()];
+        for(int i=0; i<integerList.size(); i++) {
+            answer[i] = integerList.get(i);
+        }
+
+        return answer;
     }
 }
