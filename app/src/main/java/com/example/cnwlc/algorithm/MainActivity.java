@@ -40,6 +40,12 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(Programmers.getInstance().getPalindrome("abacdedcfghihgf"));
 
         System.out.println(Arrays.toString(Programmers.getInstance().getDontHateSameCount(new int[]{1, 1, 3, 3, 0, 1, 1})));
-        System.out.println(Arrays.toString(Programmers.getInstance().getDontHateSameCount(new int[]{4, 4, 4, 3, 0, 1, 1})));
+
+        System.out.println(Programmers.getInstance().getParenthesis("())(()"));
+        System.out.println(Programmers.getInstance().getParenthesis("(())()"));
+
+        System.out.println(Arrays.toString(Programmers.getInstance().dividedNumber(new int[]{1, 5, 10, 3, 2}, 5)));
+        System.out.println(Arrays.toString(Programmers.getInstance().dividedNumber(new int[]{1, 6, 3, 4, 2, 5}, 2)));
+        System.out.println(Arrays.toString(Programmers.getInstance().dividedNumber(new int[]{1, 6, 3, 4, 2, 5}, 10)));
     }
 }

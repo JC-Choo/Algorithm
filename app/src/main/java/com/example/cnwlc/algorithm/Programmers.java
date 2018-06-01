@@ -205,6 +205,7 @@ public class Programmers {
 
         return answer;
     }
+
     // 오름차순
     class Ascending implements Comparator<Integer> {
         @Override
@@ -215,27 +216,104 @@ public class Programmers {
 
 
     // 같은 숫자는 싫어
-    public int[] getDontHateSameCount(int []arr) {
+    public int[] getDontHateSameCount(int[] arr) {
         System.out.println("getDontHateSameCount arr = " + Arrays.toString(arr));
 
         List<Integer> integerList = new ArrayList<>();
-        for(int i=0; i<arr.length-1; i++) {
+        for (int i = 0; i < arr.length - 1; i++) {
             int same = arr[i];
-            for (int j=i+1; j<arr.length; j++) {
-                if(same != arr[j]) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (same != arr[j]) {
                     integerList.add(same);
                     break;
                 } else
                     break;
             }
         }
-        integerList.add(arr[arr.length-1]);
+        integerList.add(arr[arr.length - 1]);
 
         int[] answer = new int[integerList.size()];
-        for(int i=0; i<integerList.size(); i++) {
+        for (int i = 0; i < integerList.size(); i++) {
             answer[i] = integerList.get(i);
         }
 
+        System.out.println(answer);
         return answer;
+    }
+
+    // 올바른 괄호(Parenthesis)
+    char a = '(', b = ')';
+    private List<Integer> integerList1, integerList2;
+    boolean getParenthesis(String str) {
+        integerList1 = getIndexNumber(str, a);
+        integerList2 = getIndexNumber(str, b);
+
+        boolean answer = false;
+        int aCount = 0, bCount = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == a)
+                aCount++;
+            if (str.charAt(i) == b)
+                bCount++;
+        }
+
+        if( aCount == bCount ) {
+            answer = true;
+            for(int i=0; i < aCount; i++) {
+                if(integerList1.get(i) > integerList2.get(i)) {
+                    answer = false;
+                    break;
+                }
+            }
+        }
+
+        System.out.println(answer);
+        return answer;
+    }
+    private List<Integer> getIndexNumber(String str, char c) {
+        List<Integer> integerList = new ArrayList<>();
+        int fromIndex = 0;
+        while(true) {
+            int count = str.indexOf(c, fromIndex);
+            if(count == -1)
+                break;
+            else {
+                integerList.add(count);
+                fromIndex = count + 1;
+            }
+        }
+        return integerList;
+    }
+
+    // 나누어 떨어지는 숫자 배열
+    public int[] dividedNumber(int[] arr, int divisor) {
+        List<Integer> integerList = new ArrayList<>();
+        for (int anArr : arr) {
+            if (anArr % divisor == 0)
+                integerList.add(anArr);
+        }
+
+        int[] answer = new int[integerList.size()];
+        if(integerList.size() > 0) {
+            for(int i=0; i<answer.length; i++) {
+                answer[i] = integerList.get(i);
+            }
+
+            int temp;
+            for(int i=0; i<answer.length-1; i++) {
+                for(int j=i+1; j<answer.length; j++) {
+                    if(answer[i] > answer[j]) {
+                        temp = answer[i];
+                        answer[i] = answer[j];
+                        answer[j] = temp;
+                    }
+                }
+            }
+        } else
+            answer = new int[]{-1};
+
+        return answer;
+
+//        return Arrays.stream(array).filter(factor -> factor % divisor == 0).toArray();
     }
 }
