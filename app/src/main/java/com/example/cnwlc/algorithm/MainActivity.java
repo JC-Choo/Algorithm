@@ -16,9 +16,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void programmers() {
-        int[] a = {93, 30, 55};
-        int[] b = {1, 30, 5};
-        System.out.println("answer = "+ Arrays.toString(Programmers.getInstance().functionDevelopment(a, b)));
+//        int[] a = {93, 30, 55};
+//        int[] b = {1, 30, 5};
+//        System.out.println("answer = "+ Arrays.toString(Programmers.getInstance().functionDevelopment(a, b)));
+
+
+        String[] arr1 = {"sun", "bed", "car"};
+        String[] arr2 = {"abce", "abcd", "cdx"};
+        System.out.println("answer = "+ Arrays.toString(Programmers.getInstance().solution(arr1, 1)));
 
 //        String[] a = {"mislav", "stanko", "mislav", "ana"};
 //        String[] b = {"stanko", "mislav", "ana"};

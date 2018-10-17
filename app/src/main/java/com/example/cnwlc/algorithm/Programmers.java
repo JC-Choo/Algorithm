@@ -1,6 +1,10 @@
 package com.example.cnwlc.algorithm;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Programmers {
     private Programmers() {
@@ -14,54 +18,208 @@ public class Programmers {
         return SingleTon.Instance;
     }
 
-    // 체육복 : n(전체 학생 수), lost(잃어버린 학생 번호 배열), reserve(예비 체육복 가진 학생 번호 배열)
-    public int solution(int n, int[] lost, int[] reserve) {
-        int answer = 0;     // 체육 수업을 들을 수 있는 학생의 최댓값
-        int numberOfLostStudent = 0;  // 잃어버린 학생의 수
-        int[] allOfStudentsHavingClose = new int[n];    // 전체 학생이 가지고 있는 체육복의 개수
-        for(int i=0; i<allOfStudentsHavingClose.length; i++) {
-            allOfStudentsHavingClose[i] = 1;    // 하나씩 가지고 있다고 가정
-        }
+    // 문자열 내 마음대로 정렬하기
+//    public String[] solution(String[] strings, int n) {
+//        // n번째 인덱스 글자 기준으로 오름차순 정렬.
+//        // 1. strings의 길이는 1이상 50이하 배열
+//        // 2. strings 원소는 소문자
+//        // 3. 원소 길이는 1이상 100이하 문자열
+//        // 4. strings의 원소 길이는 n보다 큼
+//        // 5. 인덱스 1의 문자가 같은 문자열이 여럿일 경우, 사전순으로 앞선 문자열이 앞쪽에 위치
+//
+//        String[] answer={""};
+//        ArrayList<String> list = new ArrayList<>();
+//        for(int i=0; i<strings.length; i++)
+//            list.add(strings[i].charAt(n)+strings[i]);
+//
+//        Collections.sort(list);
+//
+//        answer = new String[list.size()];
+//        for(int i=0; i<list.size(); i++)
+//            answer[i] = list.get(i).substring(1, list.get(i).length());
+//
+////        String[] answer = new String[strings.length];
+////        char[] chars = new char[strings.length];
+////
+////        for(int i=0; i<strings.length; i++) {
+////            chars[i] = strings[i].charAt(n);
+////        }
+////
+////        Arrays.sort(chars);
+////
+////        for(int i=0; i<strings.length; i++) {
+////            for(int j=0; j<strings.length; j++) {
+////                if(chars[i] == strings[j].charAt(n)
+////                        && !strings[j].equals(answer[j])) {
+////                    answer[i]  = strings[j];
+////                    break;
+////                }
+////            }
+////        }
+////
+////        if(chars[0] == chars[1] )
+////            Arrays.sort(answer, String.CASE_INSENSITIVE_ORDER);
+//
+//        return answer;
+//    }
+    public String[] solution(String[] strings, int n) {
+        // strings range - 1 ~ 50
+        // strings element - 1 ~ 100
 
-        for (int aReserve : reserve) {
-            allOfStudentsHavingClose[aReserve - 1] += 1;    // 예비로 가지고 있는 학생의 번호에(배열이니 0부터) +1
-        }
-
-        for(int i=0; i<lost.length; i++) {
-            allOfStudentsHavingClose[lost[i]-1] -= 1;   // 체육복을 잃어버린 학생의 번호(배열이니 0부터) -1
-            if(allOfStudentsHavingClose[lost[i]-1] == 0)
-                numberOfLostStudent += 1;       // 해당 번호 학생이 체육복이 없다면(0이라면) 없는 학생 수 +1
-        }
-
-        for(int i=0; i<allOfStudentsHavingClose.length; i++) {
-            if(allOfStudentsHavingClose[i] == 0) {
-                if(i == 0
-                        && allOfStudentsHavingClose[i+1] == 2) {  // i가 0 일때 i+1 이 2여야만 체육복을 빌려줄 수 있음
-                    allOfStudentsHavingClose[i] += 1;
-                    allOfStudentsHavingClose[i+1] -= 1;
-                    numberOfLostStudent -= 1;
-                } else if(i == allOfStudentsHavingClose.length-1
-                        && allOfStudentsHavingClose[i-1] == 2) {    // i가 마지막일때, i-1 이 0이여야만 빌려줄 수 있음
-                    allOfStudentsHavingClose[i-1] -= 1;
-                    allOfStudentsHavingClose[i] += 1;
-                    numberOfLostStudent -= 1;
-                } else if(i != 0
-                        && allOfStudentsHavingClose[i-1] == 2) {    // 0이 아닐 때, i-1이 2여야만 빌려줄 수 있음
-                    allOfStudentsHavingClose[i-1] -= 1;
-                    allOfStudentsHavingClose[i] += 1;
-                    numberOfLostStudent -= 1;
-                } else if(i != allOfStudentsHavingClose.length-1
-                        && allOfStudentsHavingClose[i+1] == 2) {    // 마지막이 아닐 때, i+1이 2여야만 빌려줄 수 있음
-                    allOfStudentsHavingClose[i] += 1;
-                    allOfStudentsHavingClose[i+1] -=1;
-                    numberOfLostStudent -= 1;
+        // == 버블정렬 ==
+        int range = strings.length - 1;
+        for(int i=0; i<range; i++) {
+            for(int j=0; j<(range)-i; j++) {
+                if(compareString(strings[j], strings[j+1], n, n)) {
+                    swapString(strings, j, j+1);
                 }
             }
         }
 
-        answer = n - numberOfLostStudent;
-        return answer;
+        return strings;
     }
+    public boolean compareString(String a, String b, int n, int now) {
+        if(a.charAt(now) > b.charAt(now))
+            return true;
+        else if(a.charAt(now) == b.charAt(now)) {
+            int next = n == now ? 0 : ++now;
+            if(n == next) next++;
+            return compareString(a, b, n, next);
+        } else {
+            return false;
+        }
+    }
+    public void swapString(String[] strings, int a, int b) {
+        String temp = strings[a];
+        strings[a] = strings[b];
+        strings[b] = temp;
+    }
+
+//    // 문자열 내 p와 y의 개수
+//    boolean solution(String s) {
+//        boolean answer = true;
+//
+//        // 1번
+//        String[] str = s.split("");
+//        int countOfP = 0;
+//        int countOfY = 0;
+//
+//        for(int i=0; i<s.length(); i++) {
+//            if(str[i].equals("P") || str[i].equals("p")) {
+//                countOfP++;
+//            } else if(str[i].equals("Y") || str[i].equals("y")) {
+//                countOfY++;
+//            }
+//        }
+//
+//        if(countOfP == countOfY) answer = true;
+//        else answer = false;
+//
+//        // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
+//        System.out.println("Hello Java");
+//
+//        // 2번
+//        s = s.toUpperCase();
+//        answer = s.chars().filter(e -> 'P' == e).count() == s.chars().filter(e -> 'Y' == e).count();
+//
+//        return answer;
+//    }
+
+//    // 두 정수 사이의 합
+//    public long solution(int a, int b) {
+//        /**
+//         * 조건 1. a와 b가 같은 경우는 둘 중 아무 수나 리턴하세요.
+//         * 조건 2. a와 b는 -10,000,000 이상 10,000,000 이하인 정수입니다.
+//         * 조건 3. a와 b의 대소관계는 정해져있지 않습니다.
+//         */
+//        long answer = 0;
+//
+//        // 1번
+//        if( a < b) {
+//            for(int i=a; i<=b; i++) {
+//                answer += i;
+//            }
+//        } else if( a == b ) {
+//            answer = a;
+//            return answer;
+//        } else {
+//            for(int i=b; i<=a; i++) {
+//                answer += i;
+//            }
+//        }
+//
+//        // 2번
+//        for(int i=Math.min(a, b); i <= Math.max(a, b); i++) {
+//            answer += i;
+//        }
+//
+//        return answer;
+//    }
+
+//    // 같은 숫자는 싫어
+//    public int[] hateSameNumber(int[] arr) {
+//        ArrayList<Integer> list = new ArrayList<>();
+//        int temp = -1;
+//        for(int i: arr) {
+//            if(temp == i) {}
+//            else list.add(i);
+//            temp = i;
+//        }
+//        int[] answer = new int[list.size()];
+//        for(int i=0; i<list.size(); i++)
+//            answer[i] = list.get(i);
+//
+//        return answer;
+//    }
+
+//    // 체육복 : n(전체 학생 수), lost(잃어버린 학생 번호 배열), reserve(예비 체육복 가진 학생 번호 배열)
+//    public int solution(int n, int[] lost, int[] reserve) {
+//        int answer = 0;     // 체육 수업을 들을 수 있는 학생의 최댓값
+//        int numberOfLostStudent = 0;  // 잃어버린 학생의 수
+//        int[] allOfStudentsHavingClose = new int[n];    // 전체 학생이 가지고 있는 체육복의 개수
+//        for(int i=0; i<allOfStudentsHavingClose.length; i++) {
+//            allOfStudentsHavingClose[i] = 1;    // 하나씩 가지고 있다고 가정
+//        }
+//
+//        for (int aReserve : reserve) {
+//            allOfStudentsHavingClose[aReserve - 1] += 1;    // 예비로 가지고 있는 학생의 번호에(배열이니 0부터) +1
+//        }
+//
+//        for(int i=0; i<lost.length; i++) {
+//            allOfStudentsHavingClose[lost[i]-1] -= 1;   // 체육복을 잃어버린 학생의 번호(배열이니 0부터) -1
+//            if(allOfStudentsHavingClose[lost[i]-1] == 0)
+//                numberOfLostStudent += 1;       // 해당 번호 학생이 체육복이 없다면(0이라면) 없는 학생 수 +1
+//        }
+//
+//        for(int i=0; i<allOfStudentsHavingClose.length; i++) {
+//            if(allOfStudentsHavingClose[i] == 0) {
+//                if(i == 0
+//                        && allOfStudentsHavingClose[i+1] == 2) {  // i가 0 일때 i+1 이 2여야만 체육복을 빌려줄 수 있음
+//                    allOfStudentsHavingClose[i] += 1;
+//                    allOfStudentsHavingClose[i+1] -= 1;
+//                    numberOfLostStudent -= 1;
+//                } else if(i == allOfStudentsHavingClose.length-1
+//                        && allOfStudentsHavingClose[i-1] == 2) {    // i가 마지막일때, i-1 이 0이여야만 빌려줄 수 있음
+//                    allOfStudentsHavingClose[i-1] -= 1;
+//                    allOfStudentsHavingClose[i] += 1;
+//                    numberOfLostStudent -= 1;
+//                } else if(i != 0
+//                        && allOfStudentsHavingClose[i-1] == 2) {    // 0이 아닐 때, i-1이 2여야만 빌려줄 수 있음
+//                    allOfStudentsHavingClose[i-1] -= 1;
+//                    allOfStudentsHavingClose[i] += 1;
+//                    numberOfLostStudent -= 1;
+//                } else if(i != allOfStudentsHavingClose.length-1
+//                        && allOfStudentsHavingClose[i+1] == 2) {    // 마지막이 아닐 때, i+1이 2여야만 빌려줄 수 있음
+//                    allOfStudentsHavingClose[i] += 1;
+//                    allOfStudentsHavingClose[i+1] -=1;
+//                    numberOfLostStudent -= 1;
+//                }
+//            }
+//        }
+//
+//        answer = n - numberOfLostStudent;
+//        return answer;
+//    }
 
 
     /** 모의고사 문제 이해 안감*/
