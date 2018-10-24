@@ -2,16 +2,7 @@ package com.example.cnwlc.algorithm;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static org.junit.Assert.*;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -26,56 +17,117 @@ public class ExampleUnitTest {
 
     @Test
     public void test() {
-        System.out.println("answer = " + solution("z", 4));
+        long start = System.currentTimeMillis();
+        int[] a = {1, 3, 2, 5, 4};
+        int[] b = {2, 2, 3, 3};
+        System.out.println("answer = " + solution(a, 20));
+        long end = System.currentTimeMillis();
+        System.out.println("수행시간 : " + (end - start));
     }
 
-    // 시저암호
-    public String solution(String s, int n) {
-        String answer = "";
-
-        String lowerAlphabet = "abcdefghijklmnopqrstuvwxyz";
-        String upperAlphabet = lowerAlphabet.toUpperCase();
-
-        String[] upperA = upperAlphabet.split("");
-        String[] lowerA = lowerAlphabet.split("");
-        String[] input = s.split("");
-
-        for(int i=0; i<input.length; i++) {
-            int value = 0;
-            for(int j=0; j<upperA.length; j++) {
-                if(input[i].equals(upperA[j])) {
-                    value = j+n;
-                    if(value >= 26) value -= 26;
-                    answer += upperA[value];
-                    break;
-                } else if(input[i].equals(lowerA[j])) {
-                    value = j+n;
-                    if(value >= 26) value -= 26;
-                    answer += lowerA[value];
-                    break;
-                } else if(" ".equals(input[i])){
-                    answer += " ";
-                    break;
-                }
+    public int solution(int[] d, int budget) {
+        int answer = 0;
+        int result = 0;
+        Arrays.sort(d);
+        for(int i=0; i<d.length; i++) {
+            result += d[i];
+            if(result > budget) {
+                answer = i;
+                break;
             }
         }
-
+        if(result <= budget) {
+            answer = d.length;
+        }
         return answer;
+
+//        for (int i = 0; i < d.length; i++) {
+//            budget -= d[i];
+//            if (budget < 0) break;
+//            answer++;
+//        }
     }
-    String caesar(String s, int n) {
-        String result = "";
-        n = n % 26;
-        for (int i = 0; i < s.length(); i++) {
-            char ch = s.charAt(i);
-            if (Character.isLowerCase(ch)) {
-                ch = (char) ((ch - 'a' + n) % 26 + 'a');
-            } else if (Character.isUpperCase(ch)) {
-                ch = (char) ((ch - 'A' + n) % 26 + 'A');
-            }
-            result += ch;
-        }
-        return result;
-    }
+
+//    // 소수찾기
+//    private int solution(int num) {
+//        int result = 0;
+//        for(int i=2; i<=num; i++) {
+//            boolean isPrime = true;
+//            for(int j=2; j*j<=i; j++) {
+//                if(i % j == 0) {
+//                    isPrime = false;
+//                    break;
+//                }
+//            }
+//
+//            if(isPrime)
+//                result++;
+//        }
+//        return result;
+////        ArrayList<Integer> arrayList = new ArrayList<>();
+////        arrayList.add(2);
+////        boolean isPassedIndex = true;
+////        for(int i=3; i<=num; i++) {
+////            for(int j=0; j<arrayList.size(); j++) {
+////                if(i%arrayList.get(j) == 0) {
+////                    isPassedIndex = false;
+////                    break;
+////                }
+////            }
+////            if(isPassedIndex)
+////                arrayList.add(i);
+////            isPassedIndex = true;
+////        }
+////        return arrayList.size();
+//    }
+
+//    // 시저암호
+//    public String solution(String s, int n) {
+//        String answer = "";
+//
+//        String lowerAlphabet = "abcdefghijklmnopqrstuvwxyz";
+//        String upperAlphabet = lowerAlphabet.toUpperCase();
+//
+//        String[] upperA = upperAlphabet.split("");
+//        String[] lowerA = lowerAlphabet.split("");
+//        String[] input = s.split("");
+//
+//        for(int i=0; i<input.length; i++) {
+//            int value = 0;
+//            for(int j=0; j<upperA.length; j++) {
+//                if(input[i].equals(upperA[j])) {
+//                    value = j+n;
+//                    if(value >= 26) value -= 26;
+//                    answer += upperA[value];
+//                    break;
+//                } else if(input[i].equals(lowerA[j])) {
+//                    value = j+n;
+//                    if(value >= 26) value -= 26;
+//                    answer += lowerA[value];
+//                    break;
+//                } else if(" ".equals(input[i])){
+//                    answer += " ";
+//                    break;
+//                }
+//            }
+//        }
+//
+//        return answer;
+//    }
+//    String caesar(String s, int n) {
+//        String result = "";
+//        n = n % 26;
+//        for (int i = 0; i < s.length(); i++) {
+//            char ch = s.charAt(i);
+//            if (Character.isLowerCase(ch)) {
+//                ch = (char) ((ch - 'a' + n) % 26 + 'a');
+//            } else if (Character.isUpperCase(ch)) {
+//                ch = (char) ((ch - 'A' + n) % 26 + 'A');
+//            }
+//            result += ch;
+//        }
+//        return result;
+//    }
 
 
 //    // 수박수박수박수?
