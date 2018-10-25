@@ -2,7 +2,9 @@ package com.example.cnwlc.algorithm;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -20,33 +22,62 @@ public class ExampleUnitTest {
         long start = System.currentTimeMillis();
         int[] a = {1, 3, 2, 5, 4};
         int[] b = {2, 2, 3, 3};
-        System.out.println("answer = " + solution(a, 20));
+        System.out.println("answer = " + solution("try hello   world"));
+        System.out.println("answer = " + solution("HellO My Name is What                  the  hell  "));
         long end = System.currentTimeMillis();
         System.out.println("수행시간 : " + (end - start));
     }
 
-    public int solution(int[] d, int budget) {
-        int answer = 0;
-        int result = 0;
-        Arrays.sort(d);
-        for(int i=0; i<d.length; i++) {
-            result += d[i];
-            if(result > budget) {
-                answer = i;
-                break;
-            }
-        }
-        if(result <= budget) {
-            answer = d.length;
-        }
-        return answer;
+    // 이상한 문자 만들기
+    public String solution(String s) {
+        StringBuilder answer = new StringBuilder();
+        String[] firstStrings = s.split(" ");
 
-//        for (int i = 0; i < d.length; i++) {
-//            budget -= d[i];
-//            if (budget < 0) break;
-//            answer++;
-//        }
+        int stringLength = s.length();
+
+        for(int i=0; i<firstStrings.length; i++) {
+            String[] secondStrings = firstStrings[i].split("");
+            StringBuilder result = new StringBuilder();
+            for(int j=0; j<secondStrings.length; j++) {
+                if(!secondStrings[j].isEmpty()) {
+                    if(j%2 == 0) result.append(secondStrings[j].toUpperCase());
+                    else result.append(secondStrings[j].toLowerCase());
+                }
+            }
+            if(i != firstStrings.length-1) answer.append(result).append(" ");
+            else answer.append(result);
+        }
+
+        int length = stringLength-answer.toString().length();
+        if(length != 0)
+            for(int i=0; i<=stringLength-answer.toString().length(); i++)
+                answer.append(" ");
+
+        return answer.toString();
     }
+
+//    public int solution(int[] d, int budget) {
+//        int answer = 0;
+//        int result = 0;
+//        Arrays.sort(d);
+//        for(int i=0; i<d.length; i++) {
+//            result += d[i];
+//            if(result > budget) {
+//                answer = i;
+//                break;
+//            }
+//        }
+//        if(result <= budget) {
+//            answer = d.length;
+//        }
+//        return answer;
+//
+////        for (int i = 0; i < d.length; i++) {
+////            budget -= d[i];
+////            if (budget < 0) break;
+////            answer++;
+////        }
+//    }
 
 //    // 소수찾기
 //    private int solution(int num) {
