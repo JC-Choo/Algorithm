@@ -20,41 +20,97 @@ public class ExampleUnitTest {
     @Test
     public void test() {
         long start = System.currentTimeMillis();
-        int[] a = {1, 3, 2, 5, 4};
-        int[] b = {2, 2, 3, 3};
-        System.out.println("answer = " + solution("try hello   world"));
-        System.out.println("answer = " + solution("HellO My Name is What                  the  hell  "));
+        int[] a = {1, 3, 2, 4, 2};
+        int[] b = {1, 2, 3, 4, 5};
+        System.out.println("answer = " + solution(a));
+        System.out.println("answer = " + solution(b));
         long end = System.currentTimeMillis();
         System.out.println("수행시간 : " + (end - start));
     }
 
-    // 이상한 문자 만들기
-    public String solution(String s) {
-        StringBuilder answer = new StringBuilder();
-        String[] firstStrings = s.split(" ");
+    // 모의고사
+    // 1번 수포자가 찍는 방식: 1, 2, 3, 4, 5, //(5)1, 2, 3, 4, 5, ...
+    // 2번 수포자가 찍는 방식: 2, 1, 2, 3, 2, 4, 2, 5, //(8) 2, 1, 2, 3, 2, 4, 2, 5, ...
+    // 3번 수포자가 찍는 방식: 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, //(10) 3, 3, 1, 1, 2, 2, 4, 4, 5, 5,
+    public int[] solution(int[] answers) {
+        int[] first = {1, 2, 3, 4, 5, 1, 2, 3, 4, 5,
+                1, 2, 3, 4, 5, 1, 2, 3, 4, 5,
+                1, 2, 3, 4, 5, 1, 2, 3, 4, 5,
+                1, 2, 3, 4, 5, 1, 2, 3, 4, 5};  // 5
+        int[] second = {2, 1, 2, 3, 2, 4, 2, 5,
+                2, 1, 2, 3, 2, 4, 2, 5,
+                2, 1, 2, 3, 2, 4, 2, 5,
+                2, 1, 2, 3, 2, 4, 2, 5,
+                2, 1, 2, 3, 2, 4, 2, 5};    // 8
+        int[] third = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5,
+                3, 3, 1, 1, 2, 2, 4, 4, 5, 5,
+                3, 3, 1, 1, 2, 2, 4, 4, 5, 5,
+                3, 3, 1, 1, 2, 2, 4, 4, 5, 5};   // 10
 
-        int stringLength = s.length();
+        int[] testFirst = {1, 2, 3, 4, 5};
+        int[] testSecond = {2, 1, 2, 3, 2};
+        int[] testThird = {3, 3, 1, 1, 2};
+        int firstIndex = 0;
+        int secondIndex = 0;
+        int thirdIndex = 0;
 
-        for(int i=0; i<firstStrings.length; i++) {
-            String[] secondStrings = firstStrings[i].split("");
-            StringBuilder result = new StringBuilder();
-            for(int j=0; j<secondStrings.length; j++) {
-                if(!secondStrings[j].isEmpty()) {
-                    if(j%2 == 0) result.append(secondStrings[j].toUpperCase());
-                    else result.append(secondStrings[j].toLowerCase());
-                }
-            }
-            if(i != firstStrings.length-1) answer.append(result).append(" ");
-            else answer.append(result);
+        int[] result = new int[3];
+
+        for(int i=0; i<answers.length; i++) {
+            if(testFirst[i] == answers[i]) firstIndex++;
+            if(testSecond[i] == answers[i]) secondIndex++;
+            if(testThird[i] == answers[i]) thirdIndex++;
         }
 
-        int length = stringLength-answer.toString().length();
-        if(length != 0)
-            for(int i=0; i<=stringLength-answer.toString().length(); i++)
-                answer.append(" ");
+        result[0] = firstIndex;
+        result[1] = secondIndex;
+        result[2] = thirdIndex;
 
-        return answer.toString();
+        Arrays.sort(result);
+        return result;
     }
+
+//    // 자릿수 더하기
+//    int solution(int n) {
+//        int answer = 0;
+//
+//        // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
+//        System.out.println("Hello Java");
+//
+//        String str = String.valueOf(n);
+//        for(int i=0; i<str.length(); i++) {
+//            answer+= Integer.parseInt(String.valueOf(str.charAt(i)));
+//        }
+//        return answer;
+//    }
+
+//    // 이상한 문자 만들기
+//    public String solution(String s) {
+//        StringBuilder answer = new StringBuilder();
+//        String[] firstStrings = s.split(" ");
+//
+//        int stringLength = s.length();
+//
+//        for(int i=0; i<firstStrings.length; i++) {
+//            String[] secondStrings = firstStrings[i].split("");
+//            StringBuilder result = new StringBuilder();
+//            for(int j=0; j<secondStrings.length; j++) {
+//                if(!secondStrings[j].isEmpty()) {
+//                    if(j%2 == 0) result.append(secondStrings[j].toUpperCase());
+//                    else result.append(secondStrings[j].toLowerCase());
+//                }
+//            }
+//            if(i != firstStrings.length-1) answer.append(result).append(" ");
+//            else answer.append(result);
+//        }
+//
+//        int length = stringLength-answer.toString().length();
+//        if(length != 0)
+//            for(int i=0; i<=stringLength-answer.toString().length(); i++)
+//                answer.append(" ");
+//
+//        return answer.toString();
+//    }
 
 //    public int solution(int[] d, int budget) {
 //        int answer = 0;
@@ -206,12 +262,12 @@ public class ExampleUnitTest {
 //
 //        return answer.toString();
 
-        // 2번.. 대단하다
+    // 2번.. 대단하다
 //        char[] sol = str.toCharArray();
 //        Arrays.sort(sol);
 //        return new StringBuilder(new String(sol)).reverse().toString();
 
-        // 3번
+    // 3번
 //        String[] arry = str.split("");
 //        Arrays.sort(arry,  Collections.reverseOrder());
 //        StringBuffer sb = new StringBuffer();
