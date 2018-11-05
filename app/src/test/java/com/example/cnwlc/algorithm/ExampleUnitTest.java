@@ -22,53 +22,77 @@ public class ExampleUnitTest {
         long start = System.currentTimeMillis();
         int[] a = {1, 3, 2, 4, 2};
         int[] b = {1, 2, 3, 4, 5};
-        System.out.println("answer = " + solution(a));
-        System.out.println("answer = " + solution(b));
+        System.out.println("answer = " + solution(3));
+        System.out.println("answer = " + solution(7));
+        System.out.println("answer = " + solution(11));
+        System.out.println("answer = " + solution(15));
         long end = System.currentTimeMillis();
         System.out.println("수행시간 : " + (end - start));
     }
 
-    // 모의고사
-    // 1번 수포자가 찍는 방식: 1, 2, 3, 4, 5, //(5)1, 2, 3, 4, 5, ...
-    // 2번 수포자가 찍는 방식: 2, 1, 2, 3, 2, 4, 2, 5, //(8) 2, 1, 2, 3, 2, 4, 2, 5, ...
-    // 3번 수포자가 찍는 방식: 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, //(10) 3, 3, 1, 1, 2, 2, 4, 4, 5, 5,
-    public int[] solution(int[] answers) {
-        int[] first = {1, 2, 3, 4, 5, 1, 2, 3, 4, 5,
-                1, 2, 3, 4, 5, 1, 2, 3, 4, 5,
-                1, 2, 3, 4, 5, 1, 2, 3, 4, 5,
-                1, 2, 3, 4, 5, 1, 2, 3, 4, 5};  // 5
-        int[] second = {2, 1, 2, 3, 2, 4, 2, 5,
-                2, 1, 2, 3, 2, 4, 2, 5,
-                2, 1, 2, 3, 2, 4, 2, 5,
-                2, 1, 2, 3, 2, 4, 2, 5,
-                2, 1, 2, 3, 2, 4, 2, 5};    // 8
-        int[] third = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5,
-                3, 3, 1, 1, 2, 2, 4, 4, 5, 5,
-                3, 3, 1, 1, 2, 2, 4, 4, 5, 5,
-                3, 3, 1, 1, 2, 2, 4, 4, 5, 5};   // 10
+    // 124 나라의 숫자
+    // 1. 124나라에는 자연수만 존재합니다.
+    // 2. 124나라에는 모든 수를 표현할 때 1, 2, 4만 사용합니다.
+    public String solution(int n) {
+        String answer = "";
+        int reminder;
 
-        int[] testFirst = {1, 2, 3, 4, 5};
-        int[] testSecond = {2, 1, 2, 3, 2};
-        int[] testThird = {3, 3, 1, 1, 2};
-        int firstIndex = 0;
-        int secondIndex = 0;
-        int thirdIndex = 0;
+        while(n>0){
+            reminder = n%3;
+            n = n/3;
 
-        int[] result = new int[3];
+            if(reminder == 0){
+                n -= 1;
+                reminder = 4;
+            }
 
-        for(int i=0; i<answers.length; i++) {
-            if(testFirst[i] == answers[i]) firstIndex++;
-            if(testSecond[i] == answers[i]) secondIndex++;
-            if(testThird[i] == answers[i]) thirdIndex++;
+            answer = reminder + answer;
         }
 
-        result[0] = firstIndex;
-        result[1] = secondIndex;
-        result[2] = thirdIndex;
-
-        Arrays.sort(result);
-        return result;
+        return answer;
     }
+
+//    // 모의고사
+//    // 1번 수포자가 찍는 방식: 1, 2, 3, 4, 5, //(5)1, 2, 3, 4, 5, ...
+//    // 2번 수포자가 찍는 방식: 2, 1, 2, 3, 2, 4, 2, 5, //(8) 2, 1, 2, 3, 2, 4, 2, 5, ...
+//    // 3번 수포자가 찍는 방식: 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, //(10) 3, 3, 1, 1, 2, 2, 4, 4, 5, 5,
+//    public int[] solution(int[] answers) {
+//        int[] first = {1, 2, 3, 4, 5, 1, 2, 3, 4, 5,
+//                1, 2, 3, 4, 5, 1, 2, 3, 4, 5,
+//                1, 2, 3, 4, 5, 1, 2, 3, 4, 5,
+//                1, 2, 3, 4, 5, 1, 2, 3, 4, 5};  // 5
+//        int[] second = {2, 1, 2, 3, 2, 4, 2, 5,
+//                2, 1, 2, 3, 2, 4, 2, 5,
+//                2, 1, 2, 3, 2, 4, 2, 5,
+//                2, 1, 2, 3, 2, 4, 2, 5,
+//                2, 1, 2, 3, 2, 4, 2, 5};    // 8
+//        int[] third = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5,
+//                3, 3, 1, 1, 2, 2, 4, 4, 5, 5,
+//                3, 3, 1, 1, 2, 2, 4, 4, 5, 5,
+//                3, 3, 1, 1, 2, 2, 4, 4, 5, 5};   // 10
+//
+//        int[] testFirst = {1, 2, 3, 4, 5};
+//        int[] testSecond = {2, 1, 2, 3, 2};
+//        int[] testThird = {3, 3, 1, 1, 2};
+//        int firstIndex = 0;
+//        int secondIndex = 0;
+//        int thirdIndex = 0;
+//
+//        int[] result = new int[3];
+//
+//        for(int i=0; i<answers.length; i++) {
+//            if(testFirst[i] == answers[i]) firstIndex++;
+//            if(testSecond[i] == answers[i]) secondIndex++;
+//            if(testThird[i] == answers[i]) thirdIndex++;
+//        }
+//
+//        result[0] = firstIndex;
+//        result[1] = secondIndex;
+//        result[2] = thirdIndex;
+//
+//        Arrays.sort(result);
+//        return result;
+//    }
 
 //    // 자릿수 더하기
 //    int solution(int n) {
