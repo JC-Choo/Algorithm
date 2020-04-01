@@ -1,4 +1,4 @@
-package com.example.cnwlc.algorithm;
+package com.example.cnwlc.algorithm.hacker_rank;
 
 import com.example.cnwlc.algorithm.hacker_rank.Person;
 
@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import java.util.Scanner;
 
-public class HackerRank {
+public class HackerRankJava {
 
     @Test
     public void day4_class_vs_instance() {

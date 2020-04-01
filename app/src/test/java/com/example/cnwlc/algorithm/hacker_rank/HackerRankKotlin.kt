@@ -1,33 +1,18 @@
-package com.example.cnwlc.algorithm
+package com.example.cnwlc.algorithm.hacker_rank
 
 import org.junit.Test
 import java.util.*
-import kotlin.math.roundToInt
 
 class HackerRankKotlin {
-    // Complete the compareTriplets function below.
-    fun compareTriplets(a: Array<Int>, b: Array<Int>): Array<Int> {
-        var resultAlice = 0
-        var resultBob = 0
-        a.forEachIndexed { index, i ->
-            if (i > b[index]) {
-                resultAlice++
-            } else if (i < b[index]) {
-                resultBob++
-            }
-        }
-
-        return arrayOf(resultAlice, resultBob)
-    }
 
     @Test
-    fun main() {
-        val a = readLine()!!.trimEnd().split(" ").map{ it.toInt() }.toTypedArray()
-        val b = readLine()!!.trimEnd().split(" ").map{ it.toInt() }.toTypedArray()
+    fun day5_loops() {
+        val scan = Scanner(System.`in`)
 
-        val result = compareTriplets(a, b)
-
-        println(result.joinToString(" "))
+        val n = scan.nextLine().trim().toInt()
+        for(i in 1..10) {
+            println("$n x $i = ${n*i}")
+        }
     }
 
     @Test
