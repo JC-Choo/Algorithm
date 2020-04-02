@@ -5,6 +5,35 @@ import java.util.*
 
 class HackerRankDataStructuresKotlin {
 
+    @Test
+    fun dataStructures_arrays_LeftRotation() {
+        val scan = Scanner(System.`in`)
+
+        val nd = scan.nextLine().split(" ")
+
+        val n = nd[0].trim().toInt()
+
+        val d = nd[1].trim().toInt()
+
+        val a = scan.nextLine().split(" ").map{ it.trim().toInt() }.toTypedArray()
+
+        leftRotation(3, arrayOf(1, 2, 3, 4, 5)).forEach {
+            print("$it ")
+        }
+    }
+
+    private fun leftRotation(rotationCount: Int, arr: Array<Int>): MutableList<Int> {
+        var result: MutableList<Int> = mutableListOf()
+
+        var a = arr.take(rotationCount)
+        var b = arr.drop(rotationCount)
+
+        result.addAll(b)
+        result.addAll(a)
+
+        return result
+    }
+
     private fun hourglassSum(arr: Array<Array<Int>>): Int {
 //        arr.forEachIndexed { index, arr2 ->
 //            arr2.forEachIndexed { index2, i ->
@@ -26,7 +55,7 @@ class HackerRankDataStructuresKotlin {
     }
 
     @Test
-    fun dataStructures_2DArrayDS() {
+    fun dataStructures_arrays_2DArrayDS() {
 //        val scan = Scanner(System.`in`)
 
         val arr = Array<Array<Int>>(6, { Array<Int>(6, { 0 }) })
@@ -46,7 +75,7 @@ class HackerRankDataStructuresKotlin {
     }
 
     @Test
-    fun dataStructures_ArraysDs() {
+    fun dataStructures_arrays_ArraysDs() {
         val scan = Scanner(System.`in`)
 
         val arrCount = scan.nextLine().trim().toInt()
