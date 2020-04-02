@@ -6,6 +6,38 @@ import java.util.*
 class HackerRankKotlin {
 
     @Test
+    fun day6_lets_review() {
+        val test01 = "Hacker"
+        val test02 = "Rank"
+        val test03 = "ivvkxq"
+        val test04 = "ivvkx"
+
+        println(indexString(test01))
+        println(indexString(test02))
+        println(indexString(test03))
+        println(indexString(test04))
+
+        val scan = Scanner(System.`in`)
+        val count = scan.nextLine().trim().toInt()
+
+        for(i in 0 until count) {
+            val testCase = scan.nextLine().trim()
+            println(indexString(testCase))
+        }
+    }
+
+    private fun indexString(str: String): String {
+        var resultOfIndexEven = ""
+        var resultOfIndexOdd = ""
+        str.forEachIndexed { index, c ->
+            if(index%2 == 0) resultOfIndexEven += c
+            else resultOfIndexOdd += c
+        }
+
+        return "$resultOfIndexEven $resultOfIndexOdd"
+    }
+
+    @Test
     fun day5_loops() {
         val scan = Scanner(System.`in`)
 
