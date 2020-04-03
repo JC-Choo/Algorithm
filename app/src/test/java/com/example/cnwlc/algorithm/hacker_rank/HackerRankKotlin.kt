@@ -6,6 +6,18 @@ import java.util.*
 class HackerRankKotlin {
 
     @Test
+    fun day7_arrays() {
+//        val scan = Scanner(System.`in`)
+//
+//        val n = scan.nextLine().trim().toInt()
+//
+//        val arr = scan.nextLine().split(" ").map{ it.trim().toInt() }.toTypedArray()
+
+        val arr = arrayOf(1, 4, 3, 2)
+        arr.reversedArray().forEach { print("$it ") }
+    }
+
+    @Test
     fun day6_lets_review() {
         val test01 = "Hacker"
         val test02 = "Rank"
