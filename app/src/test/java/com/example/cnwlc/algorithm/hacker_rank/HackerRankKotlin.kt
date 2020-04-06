@@ -6,6 +6,98 @@ import java.util.*
 class HackerRankKotlin {
 
     @Test
+    fun day10_binary_numbers() {
+//        val scan = Scanner(System.`in`)
+//        val n = scan.nextLine().trim().toInt()
+        val binaryCharArray = setBinary(524283).toCharArray()
+        var result = 1
+        var countOfOne = 1
+        for(i in 0 until binaryCharArray.size-1) {
+            if(binaryCharArray[i].toString() == "1") {
+                if(binaryCharArray[i].toString() == binaryCharArray[i+1].toString()) {
+                    countOfOne++
+                    if(countOfOne > result)
+                        result = countOfOne
+                } else {
+                    countOfOne = 1
+                }
+            } else {
+                countOfOne = 1
+            }
+        }
+
+        println("$result")
+    }
+
+    private fun setBinary(n: Int): String {
+        var result = ""
+        var lastBinary = n
+
+        while (true) {
+            result = (lastBinary%2).toString() + result
+            lastBinary /= 2
+
+            if(lastBinary == 1) {
+                result = "1$result"
+                break
+            }
+        }
+
+        return result
+    }
+
+    @Test
+    fun day9_recursion3() {
+//        val scan = Scanner(System.`in`)
+//
+//        val n = scan.nextLine().trim().toInt()
+//
+        val result = factorial(4)
+
+        println(result)
+    }
+
+    private fun factorial(n: Int): Int {
+        var result = 1
+
+        for(i in 1..n) {
+            result *= i
+        }
+
+//        1.rangeTo(n).forEach {
+//            result *= it
+//        }
+
+        return result
+    }
+
+    @Test
+    fun day8_dictionaries_and_maps() {
+        val scan = Scanner(System.`in`)
+        val n = scan.nextLine().trim().toInt()
+
+        val map = HashMap<String, Int>()
+//        val comparisonDataList: MutableList<String> = mutableListOf()
+
+        for(i in 0 until 5) {
+            val key = scan.next()
+            val value = scan.nextInt()
+            map[key] = value
+//            map["sam_$i"] = (Math.random()*100000000).toInt()
+        }
+
+        while (scan.hasNext()) {
+            val s = scan.next()
+            try {
+                val number: Int = map[s]!!
+                println("$s=${number}")
+            } catch (e: NullPointerException) {
+                println("Not found")
+            }
+        }
+    }
+
+    @Test
     fun day7_arrays() {
 //        val scan = Scanner(System.`in`)
 //
