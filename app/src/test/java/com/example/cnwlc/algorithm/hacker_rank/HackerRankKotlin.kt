@@ -5,6 +5,61 @@ import java.util.*
 
 class HackerRankKotlin {
 
+    private val day11_2d_arrays: MutableList<Int> = mutableListOf()
+
+    @Test
+    fun day11_2d_arrays() {
+        val scan = Scanner(System.`in`)
+
+        val arr = Array<Array<Int>>(6, { Array<Int>(6, { 0 }) })
+
+        for (i in 0 until 6) {
+//            arr[i] = scan.nextLine().split(" ").map{ it.trim().toInt() }.toTypedArray()
+            arr[i] = arrayOf((Math.random() * 10).toInt(), (Math.random() * 10).toInt(), (Math.random() * 10).toInt(), (Math.random() * 10).toInt(), (Math.random() * 10).toInt(), (Math.random() * 10).toInt())
+        }
+
+        arr.forEachIndexed { index1, ints ->
+            ints.forEachIndexed { index2, i ->
+                print("$i ")
+            }
+            println()
+        }
+        println()
+
+        val a = catchMaxValue(arr, 0, 0)
+//        a.sortedDescending().forEach { println("it = $it") }
+        println(a.sortedDescending()[0])
+    }
+
+    private fun catchMaxValue(arr: Array<Array<Int>>, inputRow: Int, inputColumn: Int): MutableList<Int> {
+        var result = 0
+
+        if (inputRow == 4 && inputColumn == 0) {
+            return mutableListOf()
+        } else if(inputColumn == 4) {
+            catchMaxValue(arr, inputRow + 1, 0)
+            return mutableListOf()
+        } else {
+            for (column in inputColumn..inputColumn + 2) {
+                result += arr[inputRow][column]
+
+                if (column == (inputColumn + inputColumn + 2) / 2) {
+                    result += arr[inputRow + 1][column]
+                }
+
+                result += arr[inputRow + 2][column]
+
+                if(column == inputColumn+2) {
+                    day11_2d_arrays.add(result)
+                    catchMaxValue(arr, inputRow, inputColumn+1)
+                    break
+                }
+            }
+
+            return day11_2d_arrays
+        }
+    }
+
     @Test
     fun day10_binary_numbers() {
 //        val scan = Scanner(System.`in`)
@@ -12,11 +67,11 @@ class HackerRankKotlin {
         val binaryCharArray = setBinary(524283).toCharArray()
         var result = 1
         var countOfOne = 1
-        for(i in 0 until binaryCharArray.size-1) {
-            if(binaryCharArray[i].toString() == "1") {
-                if(binaryCharArray[i].toString() == binaryCharArray[i+1].toString()) {
+        for (i in 0 until binaryCharArray.size - 1) {
+            if (binaryCharArray[i].toString() == "1") {
+                if (binaryCharArray[i].toString() == binaryCharArray[i + 1].toString()) {
                     countOfOne++
-                    if(countOfOne > result)
+                    if (countOfOne > result)
                         result = countOfOne
                 } else {
                     countOfOne = 1
@@ -34,10 +89,10 @@ class HackerRankKotlin {
         var lastBinary = n
 
         while (true) {
-            result = (lastBinary%2).toString() + result
+            result = (lastBinary % 2).toString() + result
             lastBinary /= 2
 
-            if(lastBinary == 1) {
+            if (lastBinary == 1) {
                 result = "1$result"
                 break
             }
@@ -60,7 +115,7 @@ class HackerRankKotlin {
     private fun factorial(n: Int): Int {
         var result = 1
 
-        for(i in 1..n) {
+        for (i in 1..n) {
             result *= i
         }
 
@@ -79,7 +134,7 @@ class HackerRankKotlin {
         val map = HashMap<String, Int>()
 //        val comparisonDataList: MutableList<String> = mutableListOf()
 
-        for(i in 0 until 5) {
+        for (i in 0 until 5) {
             val key = scan.next()
             val value = scan.nextInt()
             map[key] = value
@@ -124,7 +179,7 @@ class HackerRankKotlin {
         val scan = Scanner(System.`in`)
         val count = scan.nextLine().trim().toInt()
 
-        for(i in 0 until count) {
+        for (i in 0 until count) {
             val testCase = scan.nextLine().trim()
             println(indexString(testCase))
         }
@@ -134,7 +189,7 @@ class HackerRankKotlin {
         var resultOfIndexEven = ""
         var resultOfIndexOdd = ""
         str.forEachIndexed { index, c ->
-            if(index%2 == 0) resultOfIndexEven += c
+            if (index % 2 == 0) resultOfIndexEven += c
             else resultOfIndexOdd += c
         }
 
@@ -146,8 +201,8 @@ class HackerRankKotlin {
         val scan = Scanner(System.`in`)
 
         val n = scan.nextLine().trim().toInt()
-        for(i in 1..10) {
-            println("$n x $i = ${n*i}")
+        for (i in 1..10) {
+            println("$n x $i = ${n * i}")
         }
     }
 
@@ -161,7 +216,7 @@ class HackerRankKotlin {
         val scan = Scanner(System.`in`)
         val N = scan.nextLine().trim().toInt()
 
-        if(N%2 == 1) {
+        if (N % 2 == 1) {
             print("Weird")
         } else {
             when (N) {
@@ -188,8 +243,8 @@ class HackerRankKotlin {
     }
 
     private fun solve(meal_cost: Double, tip_percent: Int, tax_percent: Int): Unit {
-        val tip = meal_cost*(tip_percent/100.0)
-        val tax = meal_cost*(tax_percent/100.0)
+        val tip = meal_cost * (tip_percent / 100.0)
+        val tax = meal_cost * (tax_percent / 100.0)
         val totalCost = Math.round(meal_cost + tip + tax)
         println("tip = $tip, tax = $tax, totalCost = $totalCost")
     }
