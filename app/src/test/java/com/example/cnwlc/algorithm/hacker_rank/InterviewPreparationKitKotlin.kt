@@ -40,7 +40,7 @@ class InterviewPreparationKitKotlin {
     }
 
     @Test
-    fun warmUpChallenge_jumpingOnTheClouds() {
+    fun warmUpChallenge_jumpingOnTheClouds01() {
 //        val scan = Scanner(System.`in`)
 //
 //        val n = scan.nextLine().trim().toInt()
@@ -50,8 +50,9 @@ class InterviewPreparationKitKotlin {
         val c = arrayOf(0, 0, 1, 0, 0, 1, 0)
 //        val result = jumpingOnClouds(c, 0, 0)
 
-//        println(result)
+        println(result)
         println(jumpingOnClouds(arrayOf(0, 0, 0, 1, 0, 0), 0, 0))
+
     }
 
     var result = 0
@@ -90,6 +91,48 @@ class InterviewPreparationKitKotlin {
     }
 
     @Test
+    fun warmUpChallenge_jumpingOnTheClouds02() {
+//        val n = readLine()?.toInt()!!
+//        val clouds = readLine()?.split(" ")?.map { it.toInt() }!!
+        val n = 6
+        val arr: List<Int> = arrayOf(0, 0, 1, 0, 1, 0).toList()
+
+        var pos = 0
+        var moves = 0
+
+        while(pos < n - 1){
+            if(pos == n - 2)
+                pos += 1
+            else if(arr[pos + 2] == 0)
+                pos += 2
+            else
+                pos += 1
+            ++moves
+        }
+        println(moves)
+    }
+
+    @Test
+    fun warmUpChallenge_jumpingOnTheClouds03() {
+//        val n = readLine()?.toInt()!!
+//        val clouds = readLine()?.split(" ")?.map { it.toInt() }!!
+        val n = 6
+        val clouds: List<Int> = arrayOf(0, 0, 1, 0, 1, 0).toList()
+
+        var count = 0
+        var i = 0
+        while (i != n-1) {
+            count++
+            if(i+2 < n && clouds[i+2] != 1) {
+                i += 2
+            } else {
+                i += 1
+            }
+        }
+        println(count)
+    }
+
+    @Test
     fun warmUpChallenge_countingValleys() {
 //        val scan = Scanner(System.`in`)
 //
@@ -104,18 +147,17 @@ class InterviewPreparationKitKotlin {
     }
 
     private fun countingValleys(n: Int, s: String?): Any {
-        var count = 0
         var result = 0
-        var isValley = false
 
+        var count = 0
+        var isValley = false
         s?.toCharArray()?.forEach {
             if (count < 0) {
                 isValley = true
             }
 
-            if (it.toString() == "U") {
-                count++
-            } else count--
+            if (it.toString() == "U") count++
+            else count--
 
 
             if (count == 0 && isValley) {
