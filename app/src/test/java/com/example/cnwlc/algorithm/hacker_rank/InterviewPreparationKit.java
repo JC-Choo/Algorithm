@@ -39,33 +39,14 @@ public class InterviewPreparationKit {
     }
     // Complete the sockMerchant function below.
     private int sockMerchant(int n, int[] ar) {
-        Arrays.sort(ar);
-
-        Set<Integer> s = new HashSet<>();
-        for (int value : ar) {
-            if (!s.contains(value))
-                s.add(value);
-        }
-        System.out.println(s);
-
-
         int result = 0;
+
         Map<Integer, Integer> map = new HashMap<>();
         for(int value : ar) {
             map.put(value, map.getOrDefault(value, 0)+1);
         }
         for (int key : map.keySet()) {
-            System.out.println("map[" + key + "] = " + map.get(key));
-
             if(map.get(key)/2 != 0) result += map.get(key)/2;
-
-//            if(result < map.get(key))
-//                result = map.get(key);
-        }
-
-
-        for (int i = 0; i < ar.length; i++) {
-            System.out.println("ar[" + i + "] = " + ar[i]);
         }
 
         return result;
