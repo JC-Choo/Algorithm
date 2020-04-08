@@ -5,26 +5,30 @@ import org.junit.Test
 class Solution {
     @Test
     fun test() {
+        println(solution("aabbaccc"))
+        println(solution("ababcdcdababcdcd"))
+        println(solution("abcabcdede"))
         println(solution("abcabcabcabcdededededede"))
-//        println(solution("aabbaccc"))
-//        solution("ababcdcdababcdcd")
+        println(solution("xababcdcdababcdcd"))
     }
 
     private fun solution(s: String): Int {
         var answer = s.length
-        println("answer = $answer")
+//        println("answer = $answer")
+
+        if(answer == 1) return 1
 
         for(i in 1 .. s.length/2) {
             var count = 1
             var first = s.substring(0, i)
             var result = ""
             var j = i
-            println("first = $first")
+//            println("first = $first")
 
             while (j+i <= s.length) {
-                println("i = $i, j = $j, ")
+//                println("i = $i, j = $j, ")
                 val comparisonStr = s.substring(j, j+i)
-                println("comparisonStr = $comparisonStr")
+//                println("comparisonStr = $comparisonStr")
 //                j += i
 
                 if(first == comparisonStr) {
@@ -33,16 +37,16 @@ class Solution {
                     if(count == 1) {
                         result += first
                         first = comparisonStr
-                        println("else if result = $result, first = $first")
+//                        println("else if result = $result, first = $first")
                     } else {
                         result += "${count}${first}"
                         first = comparisonStr
                         count = 1
-                        println("else else result = $result, first = $first, count = $count")
+//                        println("else else result = $result, first = $first, count = $count")
                     }
                 }
 
-                println("result = $result, count = $count. s.substring($j) = ${s.substring(j)}")
+//                println("result = $result, count = $count. s.substring($j) = ${s.substring(j)}")
                 if(j+i >= s.length) {
                     if(count != 1) {
                         result += "$count"+first
@@ -61,8 +65,8 @@ class Solution {
             }
 
             answer = if(answer > result.length) result.length else answer
-            println("answer = $answer, result = $result")
-            println()
+//            println("answer = $answer, result = $result")
+//            println()
         }
 
         return answer
