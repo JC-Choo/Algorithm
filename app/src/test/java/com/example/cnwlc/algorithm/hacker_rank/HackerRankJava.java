@@ -1,12 +1,36 @@
 package com.example.cnwlc.algorithm.hacker_rank;
 
-import com.example.cnwlc.algorithm.hacker_rank.Person;
+import com.example.cnwlc.algorithm.hacker_rank.day12.Student;
 
 import org.junit.Test;
-
 import java.util.Scanner;
 
 public class HackerRankJava {
+
+    @Test
+    public void day12_inheritance() {
+//        Scanner scan = new Scanner(System.in);
+//        String firstName = scan.next();
+//        String lastName = scan.next();
+//        int id = scan.nextInt();
+//        int numScores = scan.nextInt();
+//        int[] testScores = new int[numScores];
+//        for(int i = 0; i < numScores; i++){
+//            testScores[i] = scan.nextInt();
+//        }
+//        scan.close();
+
+
+        String firstName = "Heraldo";
+        String lastName = "Memelli";
+        int id = 8135627;
+        int[] testScores = {100, 80};
+
+
+        Student s = new Student(firstName, lastName, id, testScores);
+        s.printPerson();
+        System.out.println("Grade: " + s.calculate() );
+    }
 
     @Test
     public void day4_class_vs_instance() {
