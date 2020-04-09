@@ -2,8 +2,39 @@ package com.example.cnwlc.algorithm.hacker_rank
 
 import org.junit.Test
 import java.util.*
+import kotlin.collections.HashMap
+import kotlin.collections.LinkedHashMap
 
 class HackerRankKotlin {
+
+    @Test
+    fun implementation_equalizeTheArray() {
+//        val scan = Scanner(System.`in`)
+//        val n = scan.nextLine().trim().toInt()
+//        val arr = scan.nextLine().split(" ").map{ it.trim().toInt() }.toTypedArray()
+//        val result = equalizeArray(arr)
+//        println(result)
+        println(equalizeArray(arrayOf(3, 3, 2, 1, 3)))
+        println(equalizeArray(arrayOf(1, 2, 3, 1, 2, 3, 3, 3)))
+    }
+
+    private fun equalizeArray(arr: Array<Int>): Int {
+        val map: HashMap<Int, Int> = LinkedHashMap()
+        arr.sortedArrayDescending().forEachIndexed { index, i ->
+//            println("index = $index, i = $i")
+            map[i] = map.getOrDefault(i, 0)+1
+        }
+
+        var maxValue = 0
+        for((key, value) in map.entries) {
+//            println("key = $key value = $value")
+            if(maxValue < value) {
+                maxValue = value
+            }
+        }
+
+        return arr.size - maxValue
+    }
 
     private val day11_2d_arrays: MutableList<Int> = mutableListOf()
 
