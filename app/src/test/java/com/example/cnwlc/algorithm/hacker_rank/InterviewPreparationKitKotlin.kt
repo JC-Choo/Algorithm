@@ -2,8 +2,107 @@ package com.example.cnwlc.algorithm.hacker_rank
 
 import org.junit.Test
 import java.util.*
+import kotlin.math.max
+import kotlin.math.min
 
 class InterviewPreparationKitKotlin {
+
+    @Test
+    fun arrays_minimumSwaps2() {
+//        val scan = Scanner(System.`in`)
+//        val n = scan.nextLine().trim().toInt()
+//        val arr = scan.nextLine().split(" ").map{ it.trim().toInt() }.toTypedArray()
+//        val res = minimumSwaps(arrayOf(1, 3, 5, 2, 4, 6, 7))
+        println(""+minimumSwaps(arrayOf(2, 3, 4, 1, 5)))
+        println(""+minimumSwaps(arrayOf(1, 3, 5, 2, 4, 6, 7)))
+    }
+
+    private fun minimumSwaps(arr: Array<Int>): Int {
+        var count = 0
+
+        var number = 1
+        var i = 0
+        while(i < arr.size-1) {
+            if(number != arr[i]) {
+                var j = i+1
+                while (j < arr.size) {
+                    if (number == arr[j]) {
+                        val temp = arr[j]
+                        arr[j] = arr[i]
+                        arr[i] = temp
+                        count++
+                        break
+                    }
+                    j++
+                }
+            }
+            i++
+            number++
+        }
+
+        return count
+    }
+
+    // TODO : 모르겠음.....
+    @Test
+    fun arrays_newYearChaos() {
+//        val scan = Scanner(System.`in`)
+//        val t = scan.nextLine().trim().toInt()
+
+//        for (tItr in 1..t) {
+//            val n = scan.nextLine().trim().toInt()
+//            val q = scan.nextLine().split(" ").map{ it.trim().toInt() }.toTypedArray()
+
+        val q = arrayOf(2, 1, 5, 3, 4)
+//            minimumBribes(q)
+//        }
+
+        minimumBribes(arrayOf(5, 1, 2, 3, 7, 8, 6, 4))
+    }
+
+    private fun minimumBribes(q: Array<Int>) {
+        var result = 0
+
+        for(i in q.size-1 downTo 0) {
+            if(q[i] - (i+1) > 2) {
+                println("Too chaotic")
+                return
+            }
+            for(j in max(0, q[i]-2) until i) {
+                if(q[j] > q[i])
+                    result++
+            }
+        }
+
+        println(result)
+    }
+
+
+    @Test
+    fun arrays_leftRotation() {
+//        val scan = Scanner(System.`in`)
+//        val nd = scan.nextLine().split(" ")
+//        val n = nd[0].trim().toInt()
+//        val d = nd[1].trim().toInt()
+//        val a = scan.nextLine().split(" ").map{ it.trim().toInt() }.toTypedArray()
+
+        val a = arrayOf(1, 2, 3, 4, 5)
+        val d = 4
+        val result = rotLeft(a, d)
+
+        println(result.joinToString(" "))
+    }
+
+    private fun rotLeft(a: Array<Int>, d: Int): Array<Int> {
+        val result: Array<Int> = a.copyOf()
+
+        a.forEachIndexed { index, i ->
+            result[(a.size-d+index)%a.size] = i
+        }
+
+        return result
+    }
+
     @Test
     fun warmUpChallenge_repeatedString() {
 //        val scan = Scanner(System.`in`)
