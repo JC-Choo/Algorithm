@@ -1,11 +1,25 @@
 package com.example.cnwlc.algorithm.hacker_rank;
 
 import com.example.cnwlc.algorithm.hacker_rank.day12.Student;
+import com.example.cnwlc.algorithm.hacker_rank.day13.Book;
+import com.example.cnwlc.algorithm.hacker_rank.day13.MyBook;
 
 import org.junit.Test;
 import java.util.Scanner;
 
 public class HackerRankJava {
+
+    @Test
+    public void day13_abstractClasses() {
+        Scanner scanner = new Scanner(System.in);
+        String title = scanner.nextLine();
+        String author = scanner.nextLine();
+        int price = scanner.nextInt();
+        scanner.close();
+
+        Book book = new MyBook(title, author, price);
+        book.display();
+    }
 
     @Test
     public void day12_inheritance() {
