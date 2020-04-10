@@ -1,12 +1,14 @@
 package com.example.cnwlc.algorithm.hacker_rank.interview_preparation_kit.directionaries_and_hashmaps
 
 import org.junit.Test
-import java.lang.StringBuilder
 import java.util.*
+import java.util.concurrent.CopyOnWriteArraySet
 import kotlin.collections.HashMap
+import kotlin.collections.LinkedHashMap
 
 class TestKotlin {
 
+    // region count triplets
     @Test
     fun mainCountTriplets() {
 //        val nr = readLine()!!.trimEnd().split(" ")
@@ -82,7 +84,9 @@ class TestKotlin {
         return result
 
     }
+    // endregion
 
+    // region SherlockAndAnagrams
     // TODO : 모르겠음
     @Test
     fun mainSherlockAndAnagrams() {
@@ -104,11 +108,92 @@ class TestKotlin {
     private fun sherlockAndAnagrams(s: String): Int {
         var result = 0
 
+        val map: LinkedHashMap<String, String> = LinkedHashMap()
+        for(i in 0 until s.length-1) {
+            for(j in i+1 until s.length) {
+                val first = s.substring(i, j)
+                map["$i$j"] = first
 
+                for(k in j+1 .. s.length) {
+                    val second = if(k == s.length) s.substring(j) else s.substring(j, k)
+                    map["$j$k"] = second
+                }
+            }
+        }
+
+//        for((key, value) in map.entries) {
+//            println("key = $key, value = $value")
+//        }
+
+        println()
+        println()
+        val linkedList: MutableList<String> = mutableListOf()
+        for((key, value) in map.entries) {
+            linkedList.add(value)
+        }
+        result = removeMap(map, 0)
+        println("result = $result")
 
         return result
     }
 
+    private fun removeMap(map: LinkedHashMap<String, String>, result: Int): Int {
+//        var count = result
+//        println("count = $result, map = ${map.isEmpty()}")
+        if(map.isEmpty()) {
+            return result
+        } else {
+            val iterator = map.entries.iterator()
+            try {
+                while (iterator.hasNext()) {
+//                for(key in map.keys) {
+                    val iteratorNext = iterator.next()
+//                    println("key = ${iteratorNext.key}, value = ${iteratorNext.value}")
+                    var isRemove = false
+                    var isBreak = false
+                    val firstValue = iteratorNext.value
+                    map.remove(iteratorNext.key)
+
+
+                    val iterator2 = map.iterator()
+                    while (iterator2.hasNext()) {
+                        val iteratorNext2 = iterator2.next()
+
+//                    for(key2 in map.keys) {
+//                        println("key2 = ${iteratorNext2.key}, value = ${iteratorNext2.value}")
+
+                        if(firstValue == iteratorNext2.value.reversed()) {
+                            isRemove = true
+                            isBreak = true
+//                            println("if isRemove = $isRemove")
+//                            result++
+                            map.remove(iteratorNext2.key)
+//                            removeMap(map, count)
+                            break
+                        }
+//                    }
+
+                    }
+
+                    if(isBreak) {
+                        isBreak = false
+                        return result + removeMap(map, result+1)
+                    }
+//                    println("isRemove = $isRemove")
+                    if(!isRemove)
+                        removeMap(map, result)
+//                }
+                }
+
+                return result
+            } catch (e: ConcurrentModificationException) {
+                return result
+            }
+        }
+    }
+    // endregion
+
+    // region two strings
     @Test
     fun mainTwoStrings() {
 //        val scan = Scanner(System.`in`)
@@ -141,6 +226,7 @@ class TestKotlin {
 
         return "NO"
     }
+    // endregion
 
     // region HashTables_RansomNote
     @Test
