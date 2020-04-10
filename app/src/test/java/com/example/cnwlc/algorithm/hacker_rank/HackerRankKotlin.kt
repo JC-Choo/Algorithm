@@ -143,19 +143,7 @@ class HackerRankKotlin {
         println(result)
     }
 
-    private fun factorial(n: Int): Int {
-        var result = 1
-
-        for (i in 1..n) {
-            result *= i
-        }
-
-//        1.rangeTo(n).forEach {
-//            result *= it
-//        }
-
-        return result
-    }
+    private fun factorial(n: Int): Int = if(n == 1) 1 else n * factorial(n-1)
 
     @Test
     fun day8_dictionaries_and_maps() {
