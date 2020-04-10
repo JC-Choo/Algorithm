@@ -100,18 +100,22 @@ class TestKotlin {
 //            println(result)
 //        }
 
+//        val a = "abcd"
+//        println(a.removeRange(IntRange(1, 1)))
+
         println(sherlockAndAnagrams("abba"))
         println(sherlockAndAnagrams("abcd"))
         println(sherlockAndAnagrams("ifailuhkqq"))
         println(sherlockAndAnagrams("kkkk"))
         println(sherlockAndAnagrams("cdcd"))
         println(sherlockAndAnagrams("ifailuhkqqhucpoltgtyovarjsnrbfpvmupwjjjfiwwhrlkpekxxnebfrwibylcvkfealgonjkzwlyfhhkefuvgndgdnbelgruel"))
+        println(sherlockAndAnagrams("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"))
     }
 
     private fun sherlockAndAnagrams(s: String): Int {
         var result = 0
 
-        val map: LinkedHashMap<String, String> = LinkedHashMap()
+        val map: HashMap<String, String> = HashMap()
         for (i in 0 until s.length - 1) {
             for (j in i + 1 until s.length) {
                 val first = s.substring(i, j)
@@ -124,10 +128,7 @@ class TestKotlin {
             }
         }
 
-        val linkedList: MutableList<String> = mutableListOf()
-        for ((key, value) in map.entries) {
-            linkedList.add(value)
-        }
+        val linkedList = map.values.toMutableList()
 
         // list의 0부터 size-1까지의 값들을 비교하기 위한 for문
         for(i in 0 until linkedList.size-1) {
@@ -140,12 +141,14 @@ class TestKotlin {
                 if(first.length == second.length) {
                     if(first != second) {
                         var third = first
+
                         for (k in second.indices) {
-                            if (!third.contains(second.toCharArray()[k])) {
+                            if (!third.contains(second[k])) {
                                 isNotContains = true
                                 break
                             } else {
-                                third = third.replaceFirst(second.toCharArray()[k].toString(), "", false)
+                                third = third.replaceFirst(second[k].toString(), "", false)
+//                                third = third.removeRange(IntRange(k, k))
                             }
                         }
                     }
@@ -157,86 +160,7 @@ class TestKotlin {
             }
         }
 
-
-//        val iterator = map.entries.iterator()
-//        try {
-//            while (iterator.hasNext()) {
-//                val iteratorFirst = iterator.next()
-//                println("1 key = ${iteratorFirst.key}, value = ${iteratorFirst.value}")
-//                val firstValue = iteratorFirst.value
-////                val iterator2 = map.iterator()
-//
-//                while (iterator.hasNext()) {
-//                    val iteratorNext = iterator.next()
-//                    println("2 key = ${iteratorNext.key}, value = ${iteratorNext.value}")
-//                    if (iteratorFirst.value == iteratorNext.value.reversed()) {
-//                        result++
-//                    }
-//                }
-//            }
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//        }
-
-
-
-
         return result
-    }
-
-    private fun removeMap(map: LinkedHashMap<String, String>, result: Int): Int {
-//        var count = result
-//        println("count = $result, map = ${map.isEmpty()}")
-        if (map.isEmpty()) {
-            return result
-        } else {
-            val iterator = map.entries.iterator()
-            try {
-                while (iterator.hasNext()) {
-//                for(key in map.keys) {
-                    val iteratorNext = iterator.next()
-//                    println("key = ${iteratorNext.key}, value = ${iteratorNext.value}")
-                    var isRemove = false
-                    var isBreak = false
-                    val firstValue = iteratorNext.value
-                    map.remove(iteratorNext.key)
-
-
-                    val iterator2 = map.iterator()
-                    while (iterator2.hasNext()) {
-                        val iteratorNext2 = iterator2.next()
-
-//                    for(key2 in map.keys) {
-//                        println("key2 = ${iteratorNext2.key}, value = ${iteratorNext2.value}")
-
-                        if (firstValue == iteratorNext2.value.reversed()) {
-                            isRemove = true
-                            isBreak = true
-//                            println("if isRemove = $isRemove")
-//                            result++
-                            map.remove(iteratorNext2.key)
-//                            removeMap(map, count)
-                            break
-                        }
-//                    }
-
-                    }
-
-                    if (isBreak) {
-                        isBreak = false
-                        return result + removeMap(map, result + 1)
-                    }
-//                    println("isRemove = $isRemove")
-                    if (!isRemove)
-                        removeMap(map, result)
-//                }
-                }
-
-                return result
-            } catch (e: ConcurrentModificationException) {
-                return result
-            }
-        }
     }
     // endregion
 
