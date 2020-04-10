@@ -5,9 +5,32 @@ import com.example.cnwlc.algorithm.hacker_rank.day13.Book;
 import com.example.cnwlc.algorithm.hacker_rank.day13.MyBook;
 
 import org.junit.Test;
+
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class HackerRankJava {
+
+    class Difference {
+        private int[] elements;
+        public int maximumDifference;
+
+        Difference(int[] a ) {
+            this.elements = a;
+        }
+
+        public void computeDifference() {
+            Arrays.sort(elements);
+            maximumDifference = Math.abs(elements[elements.length-1] - elements[0]);
+            System.out.println(maximumDifference);
+        }
+    }
+
+    @Test
+    public void day14_scope() {
+        Difference d = new Difference(new int[]{1, 3, 5});
+        d.computeDifference();
+    }
 
     @Test
     public void day13_abstractClasses() {
