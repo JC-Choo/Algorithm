@@ -1,6 +1,7 @@
 package com.example.cnwlc.algorithm.hacker_rank.interview_preparation_kit.directionaries_and_hashmaps
 
 import org.junit.Test
+import java.lang.Exception
 import java.util.*
 import java.util.concurrent.CopyOnWriteArraySet
 import kotlin.collections.HashMap
@@ -64,9 +65,9 @@ class TestKotlin {
                 break
             } else {
                 var j = i + 1
-                while (j < arr.size-1) {
+                while (j < arr.size - 1) {
                     if (arr[i] * r == arr[j]) {
-                        var k = j+1
+                        var k = j + 1
                         while (k < arr.size) {
                             if (arr[j] * r == arr[k]) {
                                 result++
@@ -78,7 +79,7 @@ class TestKotlin {
                 }
             }
             i++
-            if(result == 0L) break
+            if (result == 0L) break
         }
 
         return result
@@ -103,36 +104,82 @@ class TestKotlin {
         println(sherlockAndAnagrams("abcd"))
         println(sherlockAndAnagrams("ifailuhkqq"))
         println(sherlockAndAnagrams("kkkk"))
+        println(sherlockAndAnagrams("cdcd"))
+        println(sherlockAndAnagrams("ifailuhkqqhucpoltgtyovarjsnrbfpvmupwjjjfiwwhrlkpekxxnebfrwibylcvkfealgonjkzwlyfhhkefuvgndgdnbelgruel"))
     }
 
     private fun sherlockAndAnagrams(s: String): Int {
         var result = 0
 
         val map: LinkedHashMap<String, String> = LinkedHashMap()
-        for(i in 0 until s.length-1) {
-            for(j in i+1 until s.length) {
+        for (i in 0 until s.length - 1) {
+            for (j in i + 1 until s.length) {
                 val first = s.substring(i, j)
                 map["$i$j"] = first
 
-                for(k in j+1 .. s.length) {
-                    val second = if(k == s.length) s.substring(j) else s.substring(j, k)
+                for (k in j + 1..s.length) {
+                    val second = if (k == s.length) s.substring(j) else s.substring(j, k)
                     map["$j$k"] = second
                 }
             }
         }
 
-//        for((key, value) in map.entries) {
-//            println("key = $key, value = $value")
-//        }
-
-        println()
-        println()
         val linkedList: MutableList<String> = mutableListOf()
-        for((key, value) in map.entries) {
+        for ((key, value) in map.entries) {
             linkedList.add(value)
         }
-        result = removeMap(map, 0)
-        println("result = $result")
+
+        // list의 0부터 size-1까지의 값들을 비교하기 위한 for문
+        for(i in 0 until linkedList.size-1) {
+            var first = linkedList[i]
+
+            // list의 i+1 부터  size 까지의 값들을 비교하기 위한 for문
+            for(j in i+1 until linkedList.size) {
+                var isNotContains = false
+                val second = linkedList[j]
+                if(first.length == second.length) {
+                    if(first != second) {
+                        var third = first
+                        for (k in second.indices) {
+                            if (!third.contains(second.toCharArray()[k])) {
+                                isNotContains = true
+                                break
+                            } else {
+                                third = third.replaceFirst(second.toCharArray()[k].toString(), "", false)
+                            }
+                        }
+                    }
+
+                    if(!isNotContains) {
+                        result++
+                    }
+                }
+            }
+        }
+
+
+//        val iterator = map.entries.iterator()
+//        try {
+//            while (iterator.hasNext()) {
+//                val iteratorFirst = iterator.next()
+//                println("1 key = ${iteratorFirst.key}, value = ${iteratorFirst.value}")
+//                val firstValue = iteratorFirst.value
+////                val iterator2 = map.iterator()
+//
+//                while (iterator.hasNext()) {
+//                    val iteratorNext = iterator.next()
+//                    println("2 key = ${iteratorNext.key}, value = ${iteratorNext.value}")
+//                    if (iteratorFirst.value == iteratorNext.value.reversed()) {
+//                        result++
+//                    }
+//                }
+//            }
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
+
+
+
 
         return result
     }
@@ -140,7 +187,7 @@ class TestKotlin {
     private fun removeMap(map: LinkedHashMap<String, String>, result: Int): Int {
 //        var count = result
 //        println("count = $result, map = ${map.isEmpty()}")
-        if(map.isEmpty()) {
+        if (map.isEmpty()) {
             return result
         } else {
             val iterator = map.entries.iterator()
@@ -162,7 +209,7 @@ class TestKotlin {
 //                    for(key2 in map.keys) {
 //                        println("key2 = ${iteratorNext2.key}, value = ${iteratorNext2.value}")
 
-                        if(firstValue == iteratorNext2.value.reversed()) {
+                        if (firstValue == iteratorNext2.value.reversed()) {
                             isRemove = true
                             isBreak = true
 //                            println("if isRemove = $isRemove")
@@ -175,12 +222,12 @@ class TestKotlin {
 
                     }
 
-                    if(isBreak) {
+                    if (isBreak) {
                         isBreak = false
-                        return result + removeMap(map, result+1)
+                        return result + removeMap(map, result + 1)
                     }
 //                    println("isRemove = $isRemove")
-                    if(!isRemove)
+                    if (!isRemove)
                         removeMap(map, result)
 //                }
                 }
