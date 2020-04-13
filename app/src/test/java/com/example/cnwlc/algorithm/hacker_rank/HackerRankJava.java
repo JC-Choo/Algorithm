@@ -3,6 +3,7 @@ package com.example.cnwlc.algorithm.hacker_rank;
 import com.example.cnwlc.algorithm.hacker_rank.day12.Student;
 import com.example.cnwlc.algorithm.hacker_rank.day13.Book;
 import com.example.cnwlc.algorithm.hacker_rank.day13.MyBook;
+import com.example.cnwlc.algorithm.hacker_rank.day15.Node;
 
 import org.junit.Test;
 
@@ -10,6 +11,50 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class HackerRankJava {
+
+    // region day 15
+    // TODO : 어렵당
+    @Test
+    public void day15_linkedList() {
+//        Scanner sc = new Scanner(System.in);
+        Node head = null;
+//        int N = sc.nextInt();
+
+        int N = 4;
+
+        while (N-- > 0) {
+//            int ele = sc.nextInt();
+//            head = insert(head, ele);
+            head = insert(head, N);
+        }
+        display(head);
+//        sc.close();
+    }
+
+    // 고정
+    private void display(Node head) {
+        Node start = head;
+        while (start != null) {
+            System.out.println(start.data + " ");
+            start = start.next;
+        }
+    }
+
+    private Node insert(Node head, int data) {
+        // Complete this method
+        System.out.println("head = "+head+", data = "+data);
+
+        if(head == null) {
+            return new Node(data);
+        } else if(head.next == null) {
+            head.next = new Node(data);
+        } else {
+            insert(head.next, data);
+        }
+
+        return head;
+    }
+    // endregion
 
     class Difference {
         private int[] elements;
