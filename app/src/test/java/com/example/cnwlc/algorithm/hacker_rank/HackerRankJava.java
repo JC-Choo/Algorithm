@@ -8,9 +8,28 @@ import com.example.cnwlc.algorithm.hacker_rank.day15.Node;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class HackerRankJava {
+
+    // region day 16
+    @Test
+    public void day16_exceptionsStringToInteger() {
+        Scanner in = new Scanner(System.in);
+//        String S = in.next();
+        String S = "3124";
+
+        try {
+            System.out.println(Integer.parseInt(S));
+        } catch (NumberFormatException e) {
+            System.out.println("Bad String");
+        }
+
+//        System.out.println(Optional.of(in.hasNextInt()).filter(b -> b).map(b -> "" + in.nextInt()).orElse("Bad String"));
+//        System.out.println(Optional.of(in.hasNextInt()).filter(b -> b).map(b -> "" + in.nextInt()).orElseGet(() -> "Bad String"));
+    }
+    // endregion
 
     // region day 15
     // TODO : 어렵당
@@ -42,11 +61,11 @@ public class HackerRankJava {
 
     private Node insert(Node head, int data) {
         // Complete this method
-        System.out.println("head = "+head+", data = "+data);
+        System.out.println("head = " + head + ", data = " + data);
 
-        if(head == null) {
+        if (head == null) {
             return new Node(data);
-        } else if(head.next == null) {
+        } else if (head.next == null) {
             head.next = new Node(data);
         } else {
             insert(head.next, data);
@@ -60,13 +79,13 @@ public class HackerRankJava {
         private int[] elements;
         public int maximumDifference;
 
-        Difference(int[] a ) {
+        Difference(int[] a) {
             this.elements = a;
         }
 
         public void computeDifference() {
             Arrays.sort(elements);
-            maximumDifference = Math.abs(elements[elements.length-1] - elements[0]);
+            maximumDifference = Math.abs(elements[elements.length - 1] - elements[0]);
             System.out.println(maximumDifference);
         }
     }
@@ -111,7 +130,7 @@ public class HackerRankJava {
 
         Student s = new Student(firstName, lastName, id, testScores);
         s.printPerson();
-        System.out.println("Grade: " + s.calculate() );
+        System.out.println("Grade: " + s.calculate());
     }
 
     @Test
@@ -122,11 +141,11 @@ public class HackerRankJava {
         for (int i = 0; i < T; i++) {
 //            int age = sc.nextInt();
             Person p;
-            if(i == 0) {
+            if (i == 0) {
                 p = new Person(-1);
-            } else if(i == 1) {
+            } else if (i == 1) {
                 p = new Person(10);
-            } else if( i == 2){
+            } else if (i == 2) {
                 p = new Person(16);
             } else {
                 p = new Person(18);
@@ -154,14 +173,14 @@ public class HackerRankJava {
         String x_string;
 
         x_int = scan.nextInt();
-        System.out.println(i+x_int);
+        System.out.println(i + x_int);
 
         x_double = scan.nextDouble();
-        System.out.println(d+x_double);
+        System.out.println(d + x_double);
 
         scan.nextLine();
         x_string = scan.nextLine();
-        System.out.println(s+x_string);
+        System.out.println(s + x_string);
 
         scan.close();
     }
