@@ -13,6 +13,45 @@ import java.util.Scanner;
 
 public class HackerRankJava {
 
+    // region day 17
+    @Test
+    public void day17_moreExceptions() {
+//        Scanner in = new Scanner(System.in);
+//        int t = in.nextInt();
+//        while (t-- > 0) {
+//
+//            int n = in.nextInt();
+//            int p = in.nextInt();
+            Calculator myCalculator = new Calculator();
+            try {
+                int ans = myCalculator.power(-3, 5);
+                System.out.println(ans);
+            }
+            catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+//        }
+//        in.close();
+    }
+
+    class Calculator {
+
+        public int power(int n, int p) throws Exception {
+            int result = 1;
+
+            if(n < 0 || p < 0) {
+                throw new Exception("n and p should be non-negative");
+            }
+
+            for(int i=1; i <= p; i++) {
+                result = result*n;
+            }
+
+            return result;
+        }
+    }
+    // endregion
+
     // region day 16
     @Test
     public void day16_exceptionsStringToInteger() {
