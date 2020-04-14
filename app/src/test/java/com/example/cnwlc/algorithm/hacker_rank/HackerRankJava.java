@@ -8,10 +8,77 @@ import com.example.cnwlc.algorithm.hacker_rank.day15.Node;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.Optional;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class HackerRankJava {
+    class Solution {
+        private LinkedList<Character> stack = new LinkedList<>();
+        private LinkedList<Character> queue = new LinkedList<>();
+//        Stack<Character> stack = new Stack<>();
+//        Queue<Character> queue = new LinkedList<>();
+
+        private void pushCharacter(char c) {
+//            stack.push(c);
+            stack.add(c);
+        }
+
+        private void enqueueCharacter(char c) {
+            queue.add(c);
+        }
+
+        public char popCharacter() {
+//            return stack.pop();
+            char c = stack.get(stack.size()-1);
+            stack.remove(stack.size()-1);
+            return c;
+        }
+
+        public char dequeueCharacter() {
+//            return queue.poll();
+//            return queue.remove();
+            char c = stack.get(0);
+            stack.remove(0);
+            return c;
+        }
+    }
+
+    @Test
+    public void day18_queueAndStacks() {
+//        Scanner scan = new Scanner(System.in);
+//        String input = scan.nextLine();
+//        scan.close();
+
+//        String input = "racecar";
+        String input = "abcba";
+
+        // Convert input String to an array of characters:
+        char[] s = input.toCharArray();
+
+        // Create a Solution object:
+        Solution p = new Solution();
+
+        // Enqueue/Push all chars to their respective data structures:
+        for (char c : s) {
+            p.pushCharacter(c);
+            p.enqueueCharacter(c);
+        }
+
+        // Pop/Dequeue the chars at the head of both data structures and compare them:
+        boolean isPalindrome = true;
+        for (int i = 0; i < s.length/2; i++) {
+            if (p.popCharacter() != p.dequeueCharacter()) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        //Finally, print whether string s is palindrome or not.
+        System.out.println( "The word, " + input + ", is "
+                + ( (!isPalindrome) ? "not a palindrome." : "a palindrome." ) );
+    }
 
     // region day 17
     @Test
