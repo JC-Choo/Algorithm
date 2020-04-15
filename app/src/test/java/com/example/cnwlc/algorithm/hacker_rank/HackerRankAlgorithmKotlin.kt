@@ -4,6 +4,54 @@ import org.junit.Test
 import java.util.*
 
 class HackerRankAlgorithmKotlin {
+    @Test
+    fun strings_palindromeIndex() {
+//        val scan = Scanner(System.`in`)
+//        val q = scan.nextLine().trim().toInt()
+//        for (qItr in 1..q) {
+//            val s = scan.nextLine()
+//            val result = palindromeIndex(s)
+//            println(result)
+//        }
+//        println(palindromeIndex("aaab"))
+//        println(palindromeIndex("baa"))
+//        println(palindromeIndex("aaa"))
+        println(palindromeIndex("quyjjdcgsvvsgcdjjyq"))
+    }
+
+    fun palindromeIndex(s: String): Int {
+        var result = -1
+        var isNext = false
+
+        for(i in s.indices) {
+            if(s[i] != s[s.length-i-1]) {
+                val strFromFront = s.substring(i+1, s.length-i)
+                result = i
+                for(index in strFromFront.indices) {
+                    if(strFromFront[index] != strFromFront[strFromFront.length-index-1]) {
+                        isNext = true
+                        break
+                    }
+                }
+
+                if(isNext) {
+                    val strFromBack = s.substring(i, s.length-i-1)
+                    result = s.length-i-1
+                    for(index in strFromBack.indices) {
+                        if(strFromBack[index] != strFromBack[strFromBack.length-index-1]) {
+                            result = -2
+                            break
+                        }
+                    }
+                }
+                break
+            }
+        }
+
+
+        return result
+    }
+
     private fun diagonalDifference(arr: Array<Array<Int>>): Int {
         var resultFromLeftToLeft = 0
         var resultFromRightToRight = 0
