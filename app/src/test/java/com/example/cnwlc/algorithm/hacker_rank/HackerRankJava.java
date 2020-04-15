@@ -4,6 +4,7 @@ import com.example.cnwlc.algorithm.hacker_rank.day12.Student;
 import com.example.cnwlc.algorithm.hacker_rank.day13.Book;
 import com.example.cnwlc.algorithm.hacker_rank.day13.MyBook;
 import com.example.cnwlc.algorithm.hacker_rank.day15.Node;
+import com.example.cnwlc.algorithm.programmers.Solution;
 
 import org.junit.Test;
 
@@ -14,7 +15,42 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class HackerRankJava {
-    class Solution {
+
+    // region day19
+    interface AdvancedArithmetic {
+        int divisorSum(int n);
+    }
+
+    // 작성
+    class Calculator_day19 implements AdvancedArithmetic {
+        public int divisorSum(int n) {
+            int result = 0;
+
+            for (int i = 1; i <= n; i++) {
+                if(n%i == 0) {
+                    result += i;
+                }
+            }
+
+            return result;
+        }
+    }
+
+    @Test
+    public void day19_interfaces() {
+//        Scanner scan = new Scanner(System.in);
+//        int n = scan.nextInt();
+//        scan.close();
+//
+        AdvancedArithmetic myCalculator = new Calculator_day19();
+        int sum = myCalculator.divisorSum(6);
+        System.out.println("I implemented: " + myCalculator.getClass().getInterfaces()[0].getName());
+        System.out.println(sum);
+    }
+    // endregion
+
+    // region day18
+    class Solution_day18 {
         private LinkedList<Character> stack = new LinkedList<>();
         private LinkedList<Character> queue = new LinkedList<>();
 //        Stack<Character> stack = new Stack<>();
@@ -31,8 +67,8 @@ public class HackerRankJava {
 
         public char popCharacter() {
 //            return stack.pop();
-            char c = stack.get(stack.size()-1);
-            stack.remove(stack.size()-1);
+            char c = stack.get(stack.size() - 1);
+            stack.remove(stack.size() - 1);
             return c;
         }
 
@@ -58,7 +94,7 @@ public class HackerRankJava {
         char[] s = input.toCharArray();
 
         // Create a Solution object:
-        Solution p = new Solution();
+        Solution_day18 p = new Solution_day18();
 
         // Enqueue/Push all chars to their respective data structures:
         for (char c : s) {
@@ -68,7 +104,7 @@ public class HackerRankJava {
 
         // Pop/Dequeue the chars at the head of both data structures and compare them:
         boolean isPalindrome = true;
-        for (int i = 0; i < s.length/2; i++) {
+        for (int i = 0; i < s.length / 2; i++) {
             if (p.popCharacter() != p.dequeueCharacter()) {
                 isPalindrome = false;
                 break;
@@ -76,9 +112,10 @@ public class HackerRankJava {
         }
 
         //Finally, print whether string s is palindrome or not.
-        System.out.println( "The word, " + input + ", is "
-                + ( (!isPalindrome) ? "not a palindrome." : "a palindrome." ) );
+        System.out.println("The word, " + input + ", is "
+                + ((!isPalindrome) ? "not a palindrome." : "a palindrome."));
     }
+    // endregion
 
     // region day 17
     @Test
@@ -89,29 +126,28 @@ public class HackerRankJava {
 //
 //            int n = in.nextInt();
 //            int p = in.nextInt();
-            Calculator myCalculator = new Calculator();
-            try {
-                int ans = myCalculator.power(-3, 5);
-                System.out.println(ans);
-            }
-            catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+        Calculator_day17 myCalculator = new Calculator_day17();
+        try {
+            int ans = myCalculator.power(-3, 5);
+            System.out.println(ans);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 //        }
 //        in.close();
     }
 
-    class Calculator {
+    class Calculator_day17 {
 
         public int power(int n, int p) throws Exception {
             int result = 1;
 
-            if(n < 0 || p < 0) {
+            if (n < 0 || p < 0) {
                 throw new Exception("n and p should be non-negative");
             }
 
-            for(int i=1; i <= p; i++) {
-                result = result*n;
+            for (int i = 1; i <= p; i++) {
+                result = result * n;
             }
 
             return result;
@@ -181,6 +217,7 @@ public class HackerRankJava {
     }
     // endregion
 
+    // region day 14
     class Difference {
         private int[] elements;
         public int maximumDifference;
@@ -201,6 +238,7 @@ public class HackerRankJava {
         Difference d = new Difference(new int[]{1, 3, 5});
         d.computeDifference();
     }
+    // endregion
 
     @Test
     public void day13_abstractClasses() {
