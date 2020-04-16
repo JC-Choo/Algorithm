@@ -8,6 +8,52 @@ import kotlin.collections.LinkedHashMap
 class HackerRankKotlin {
 
     @Test
+    fun day20_sorting() {
+//        val scan = Scanner(System.`in`)
+//        val n = scan.nextInt()
+//        val a = scan.nextLine().split(" ").map {
+//            it.trim().toInt()
+//        }.toTypedArray()
+
+        val n = 3
+        val a = arrayOf(3, 2, 1)
+
+        var totalSwap = 0
+
+        for (i in 0 until n) {
+            // Track number of elements swapped during a single array traversal
+            var numberOfSwaps = 0
+            for (j in 0 until n - 1) {
+                // Swap adjacent elements if they are in decreasing order
+                if (a[j] > a[j + 1]) {
+//                    swap(a[j], a[j + 1])
+                    val temp = a[j]
+                    a[j] = a[j + 1]
+                    a[j + 1] = temp
+
+                    totalSwap++
+                    numberOfSwaps++
+                }
+            }
+
+            // If no elements were swapped during a traversal, array is sorted
+            if (numberOfSwaps == 0) {
+                break
+            }
+        }
+
+        println("Array is sorted in $totalSwap swaps.")
+        println("First Element: ${a[0]}")
+        println("Last Element: ${a[n-1]}")
+    }
+
+//    private fun swap(get: Int, get1: Int) {
+//        val temp = get
+//        get = get1
+//        get1 = temp
+//    }
+
+    @Test
     fun implementation_equalizeTheArray() {
 //        val scan = Scanner(System.`in`)
 //        val n = scan.nextLine().trim().toInt()
