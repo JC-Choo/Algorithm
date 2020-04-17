@@ -1,20 +1,66 @@
 package com.example.cnwlc.algorithm.hacker_rank;
 
+import android.util.Printer;
+
 import com.example.cnwlc.algorithm.hacker_rank.day12.Student;
 import com.example.cnwlc.algorithm.hacker_rank.day13.Book;
 import com.example.cnwlc.algorithm.hacker_rank.day13.MyBook;
 import com.example.cnwlc.algorithm.hacker_rank.day15.Node;
-import com.example.cnwlc.algorithm.programmers.Solution;
 
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
-import java.util.Stack;
 
 public class HackerRankJava {
+
+    // region day 20
+    public class Generics {
+        public void main(String args[]){
+//            Scanner scanner = new Scanner(System.in);
+//            int n = scanner.nextInt();
+            int n = 10;
+            Integer[] intArray = new Integer[n];
+            for (int i = 0; i < n; i++) {
+//                intArray[i] = scanner.nextInt();
+                intArray[i] = (int) (Math.random()*10);
+            }
+
+//            n = scanner.nextInt();
+            n = 5;
+            String[] stringArray = new String[n];
+            for (int i = 0; i < n; i++) {
+//                stringArray[i] = scanner.next();
+                stringArray[i] = "Hello_"+i;
+            }
+
+            Printer<Integer> intPrinter = new Printer<>();
+            Printer<String> stringPrinter = new Printer<>();
+            intPrinter.printArray( intArray  );
+            stringPrinter.printArray( stringArray );
+            if(Printer.class.getDeclaredMethods().length > 1){
+                System.out.println("The Printer class should only have 1 method named printArray.");
+            }
+        }
+    }
+
+    class Printer <T> {
+
+        public void printArray(T[] arr) {
+            for(int i=0; i<arr.length; i++) {
+                System.out.println(arr[i]);
+            }
+        }
+
+    }
+
+    @Test
+    public void day20_generics() {
+
+    }
+    // endregion
 
     // region day19
     interface AdvancedArithmetic {
