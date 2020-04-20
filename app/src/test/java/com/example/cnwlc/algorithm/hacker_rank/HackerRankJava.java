@@ -6,6 +6,8 @@ import com.example.cnwlc.algorithm.hacker_rank.day13.MyBook;
 import com.example.cnwlc.algorithm.hacker_rank.day15.Node;
 import com.example.cnwlc.algorithm.hacker_rank.day22.Node22;
 import com.example.cnwlc.algorithm.hacker_rank.day22.Solution22;
+import com.example.cnwlc.algorithm.hacker_rank.day23.Node23;
+import com.example.cnwlc.algorithm.hacker_rank.day23.Solution23;
 
 import org.junit.Test;
 
@@ -14,6 +16,39 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class HackerRankJava {
+
+    // region day 23
+    // TODO : 이것도 모르겠다 ㅡㅡ 하 짜증나
+    @Test
+    public void day23_BST_LevelOrder_Traversal() {
+//        Scanner sc = new Scanner(System.in);
+//        int T = sc.nextInt();
+//
+        Node23 root = null;
+//        Solution23 solu = new Solution23();
+//        while (T-- > 0) {
+//            int data = sc.nextInt();
+//            root = solu.insert(root, data);
+//        }
+
+        Solution23 solu = new Solution23();
+        int data = 3;
+        root = solu.insert(root, data);
+        data = 5;
+        root = solu.insert(root, data);
+        data = 2;
+        root = solu.insert(root, data);
+        data = 1;
+        root = solu.insert(root, data);
+        data = 4;
+        root = solu.insert(root, data);
+        data = 6;
+        root = solu.insert(root, data);
+        data = 7;
+        root = solu.insert(root, data);
+        solu.levelOrder(root);
+    }
+    // endregion
 
     // region day 22
     // TODO : 재귀에 대해 생각좀 해보자
@@ -30,12 +65,10 @@ public class HackerRankJava {
 
         Solution22 solu = new Solution22();
         int data = 3;
-        root = solu.insert(root, data);  // root = null
-        // insert : root == null -> root = Node22(3) => root.data = 3
+        root = solu.insert(root, data);
         data = 5;
-        root = solu.insert(root, data);  // root = Node22(3)
-        // insert : root != null -> data(=5) > root.data(3) -> else -> insert(root.right(=null), 5) -> root == null -> return new Node22(5) -> root.right = Node22(5) ->
-        data = 2;   // root = Node22(5)
+        root = solu.insert(root, data);
+        data = 2;
         root = solu.insert(root, data);
         data = 1;
         root = solu.insert(root, data);
