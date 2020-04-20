@@ -7,6 +7,7 @@ import kotlin.collections.LinkedHashMap
 
 class HackerRankKotlin {
 
+    // region day 20
     @Test
     fun day20_sorting() {
 //        val scan = Scanner(System.`in`)
@@ -46,12 +47,7 @@ class HackerRankKotlin {
         println("First Element: ${a[0]}")
         println("Last Element: ${a[n-1]}")
     }
-
-//    private fun swap(get: Int, get1: Int) {
-//        val temp = get
-//        get = get1
-//        get1 = temp
-//    }
+    // endregion
 
     @Test
     fun implementation_equalizeTheArray() {

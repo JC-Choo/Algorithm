@@ -1,31 +1,67 @@
 package com.example.cnwlc.algorithm.hacker_rank;
 
-import android.util.Printer;
-
 import com.example.cnwlc.algorithm.hacker_rank.day12.Student;
 import com.example.cnwlc.algorithm.hacker_rank.day13.Book;
 import com.example.cnwlc.algorithm.hacker_rank.day13.MyBook;
 import com.example.cnwlc.algorithm.hacker_rank.day15.Node;
+import com.example.cnwlc.algorithm.hacker_rank.day22.Node22;
+import com.example.cnwlc.algorithm.hacker_rank.day22.Solution22;
 
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 public class HackerRankJava {
 
-    // region day 20
+    // region day 22
+    // TODO : 재귀에 대해 생각좀 해보자
+    @Test
+    public void day22_binarySearchTrees() {
+//        Scanner sc = new Scanner(System.in);
+//        int T = sc.nextInt();
+        Node22 root = null;
+
+//        while (T-- > 0) {
+//            int data = sc.nextInt();
+//           root = insert(root, data);
+//        }
+
+        Solution22 solu = new Solution22();
+        int data = 3;
+        root = solu.insert(root, data);  // root = null
+        // insert : root == null -> root = Node22(3) => root.data = 3
+        data = 5;
+        root = solu.insert(root, data);  // root = Node22(3)
+        // insert : root != null -> data(=5) > root.data(3) -> else -> insert(root.right(=null), 5) -> root == null -> return new Node22(5) -> root.right = Node22(5) ->
+        data = 2;   // root = Node22(5)
+        root = solu.insert(root, data);
+        data = 1;
+        root = solu.insert(root, data);
+        data = 4;
+        root = solu.insert(root, data);
+        data = 6;
+        root = solu.insert(root, data);
+        data = 7;
+        root = solu.insert(root, data);
+
+        int height = solu.getHeight(root);
+        System.out.println(height);
+//        System.out.println(solu.getHeight(root));
+    }
+    // endregion
+
+    // region day 21
     public class Generics {
-        public void main(String args[]){
+        public void main(String args[]) {
 //            Scanner scanner = new Scanner(System.in);
 //            int n = scanner.nextInt();
             int n = 10;
             Integer[] intArray = new Integer[n];
             for (int i = 0; i < n; i++) {
 //                intArray[i] = scanner.nextInt();
-                intArray[i] = (int) (Math.random()*10);
+                intArray[i] = (int) (Math.random() * 10);
             }
 
 //            n = scanner.nextInt();
@@ -33,23 +69,23 @@ public class HackerRankJava {
             String[] stringArray = new String[n];
             for (int i = 0; i < n; i++) {
 //                stringArray[i] = scanner.next();
-                stringArray[i] = "Hello_"+i;
+                stringArray[i] = "Hello_" + i;
             }
 
             Printer<Integer> intPrinter = new Printer<>();
             Printer<String> stringPrinter = new Printer<>();
-            intPrinter.printArray( intArray  );
-            stringPrinter.printArray( stringArray );
-            if(Printer.class.getDeclaredMethods().length > 1){
+            intPrinter.printArray(intArray);
+            stringPrinter.printArray(stringArray);
+            if (Printer.class.getDeclaredMethods().length > 1) {
                 System.out.println("The Printer class should only have 1 method named printArray.");
             }
         }
     }
 
-    class Printer <T> {
+    class Printer<T> {
 
         public void printArray(T[] arr) {
-            for(int i=0; i<arr.length; i++) {
+            for (int i = 0; i < arr.length; i++) {
                 System.out.println(arr[i]);
             }
         }
@@ -57,12 +93,12 @@ public class HackerRankJava {
     }
 
     @Test
-    public void day20_generics() {
+    public void day21_generics() {
 
     }
     // endregion
 
-    // region day19
+    // region day 19
     interface AdvancedArithmetic {
         int divisorSum(int n);
     }
@@ -73,7 +109,7 @@ public class HackerRankJava {
             int result = 0;
 
             for (int i = 1; i <= n; i++) {
-                if(n%i == 0) {
+                if (n % i == 0) {
                     result += i;
                 }
             }
@@ -95,7 +131,7 @@ public class HackerRankJava {
     }
     // endregion
 
-    // region day18
+    // region day 18
     class Solution_day18 {
         private LinkedList<Character> stack = new LinkedList<>();
         private LinkedList<Character> queue = new LinkedList<>();
@@ -232,14 +268,14 @@ public class HackerRankJava {
         while (N-- > 0) {
 //            int ele = sc.nextInt();
 //            head = insert(head, ele);
-            head = insert(head, N);
+            head = insert15(head, N);
         }
-        display(head);
+        display15(head);
 //        sc.close();
     }
 
     // 고정
-    private void display(Node head) {
+    private void display15(Node head) {
         Node start = head;
         while (start != null) {
             System.out.println(start.data + " ");
@@ -247,7 +283,7 @@ public class HackerRankJava {
         }
     }
 
-    private Node insert(Node head, int data) {
+    private Node insert15(Node head, int data) {
         // Complete this method
         System.out.println("head = " + head + ", data = " + data);
 
@@ -256,7 +292,7 @@ public class HackerRankJava {
         } else if (head.next == null) {
             head.next = new Node(data);
         } else {
-            insert(head.next, data);
+            insert15(head.next, data);
         }
 
         return head;
