@@ -19,6 +19,32 @@ import java.util.Scanner;
 
 public class HackerRankJava {
 
+    // region day 25
+    @Test
+    public void day25_runningTimeAndComplexity() {
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+        while (T-- > 0) {
+            String result = "Prime";
+            int n = sc.nextInt();
+            if(n == 1) {
+                result = "Not prime";
+                System.out.println(result);
+            } else {
+                int sqrt = (int) Math.sqrt(n);
+                for(int i=2; i<sqrt; i++) {
+                    if(n%i == 0) {
+                        result = "Not prime";
+                        break;
+                    }
+                }
+
+                System.out.println(result);
+            }
+        }
+    }
+    // endregion
+
     // region day 24
     @Test
     public void day24_moreLinkedLists() {
