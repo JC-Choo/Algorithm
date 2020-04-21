@@ -8,6 +8,8 @@ import com.example.cnwlc.algorithm.hacker_rank.day22.Node22;
 import com.example.cnwlc.algorithm.hacker_rank.day22.Solution22;
 import com.example.cnwlc.algorithm.hacker_rank.day23.Node23;
 import com.example.cnwlc.algorithm.hacker_rank.day23.Solution23;
+import com.example.cnwlc.algorithm.hacker_rank.day24.Node24;
+import com.example.cnwlc.algorithm.hacker_rank.day24.Solution24;
 
 import org.junit.Test;
 
@@ -16,6 +18,38 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class HackerRankJava {
+
+    // region day 24
+    @Test
+    public void day24_moreLinkedLists() {
+//        Scanner sc = new Scanner(System.in);
+        Node24 head = null;
+//        int T = sc.nextInt();
+
+        Solution24 solu = new Solution24();
+
+//        while (T-- > 0) {
+//            int ele = sc.nextInt();
+//            head = insert(head, ele);
+//        }
+
+        int ele = 1;
+        head = solu.insert(head, ele);
+        ele = 2;
+        head = solu.insert(head, ele);
+        ele = 2;
+        head = solu.insert(head, ele);
+        ele = 3;
+        head = solu.insert(head, ele);
+        ele = 3;
+        head = solu.insert(head, ele);
+        ele = 4;
+        head = solu.insert(head, ele);
+
+        head = solu.removeDuplicates(head);
+        solu.display(head);
+    }
+    // endregion
 
     // region day 23
     // TODO : 이것도 모르겠다 ㅡㅡ 하 짜증나
