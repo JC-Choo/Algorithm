@@ -32,7 +32,7 @@ public class HackerRankJava {
                 System.out.println(result);
             } else {
                 int sqrt = (int) Math.sqrt(n);
-                for(int i=2; i<sqrt; i++) {
+                for(int i=2; i<=sqrt; i++) {
                     if(n%i == 0) {
                         result = "Not prime";
                         break;
