@@ -6,6 +6,52 @@ import kotlin.collections.HashMap
 import kotlin.collections.LinkedHashMap
 
 class HackerRankKotlin {
+    // region day 26
+    @Test
+    fun day26_nestedLogic() {
+        val scan = Scanner(System.`in`)
+
+//        val actualDate = scan.nextLine().split(" ").map{ it.trim().toInt() }.toTypedArray().toIntArray()
+//        val expectedDate = scan.nextLine().split(" ").map{ it.trim().toInt() }.toTypedArray().toIntArray()
+
+        println(calculator(intArrayOf(31, 8, 2010), intArrayOf(20, 1, 2010)))
+        println(calculator(intArrayOf(2, 6, 2010), intArrayOf(5, 7, 2010)))
+        println(calculator(intArrayOf(9, 6, 2010), intArrayOf(6, 6, 2010)))
+        println(calculator(intArrayOf(31, 12, 2009), intArrayOf(1, 1, 2010)))
+//        println(calculator(intArrayOf(1, 1, 2010), intArrayOf(31, 12, 2009)))
+    }
+
+    private fun calculator(actualDate: IntArray, expectedDate: IntArray) : Int {
+        var fine = 0
+        val lateYear = (actualDate[2]-expectedDate[2])
+        val lateMonth = (actualDate[1]-expectedDate[1])
+        val lateDay = (actualDate[0]-expectedDate[0])
+
+        println("lateYear = $lateYear, lateMonth = $lateMonth, lateDay = $lateDay")
+
+        if (lateYear > 0) {
+            fine += 10000
+            return fine
+        } else if( lateYear < 0){
+            return 0
+        }
+
+        if(lateMonth > 0) {
+            fine += 500*lateMonth
+            return fine
+        } else if( lateMonth < 0){
+            return 0
+        }
+
+        if(lateDay > 0) {
+            fine += 15*lateDay
+            return fine
+        } else if( lateDay < 0){
+            return 0
+        }
+        return fine
+    }
+    // endregion
 
     // region day 20
     @Test
