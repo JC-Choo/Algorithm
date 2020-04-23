@@ -19,6 +19,13 @@ import java.util.Scanner;
 
 public class HackerRankJava {
 
+    // region day 27
+    @Test
+    public void day27_testing() {
+
+    }
+    // endregion
+
     // region day 25
     @Test
     public void day25_runningTimeAndComplexity() {
