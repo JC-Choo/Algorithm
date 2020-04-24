@@ -6,6 +6,69 @@ import kotlin.collections.HashMap
 import kotlin.collections.LinkedHashMap
 
 class HackerRankKotlin {
+
+    // region day 28
+    @Test
+    fun day28_RegEx_Patterns_andIntroToDatabase() {
+//        val scan = Scanner(System.`in`)
+//        val N = scan.nextLine().trim().toInt()
+
+        val list: MutableList<String> = mutableListOf()
+
+//        for (NItr in 1..N) {
+//            val firstNameEmailID = scan.nextLine().split(" ")
+//            val firstName = firstNameEmailID[0]
+//            val emailID = firstNameEmailID[1]
+//
+//            if (emailID.contains("gmail.com")) {
+//                list.add(firstName)
+//            }
+//        }
+
+
+        val two: MutableList<Pair<String, String>> = mutableListOf()
+        two.add(Pair("riya", "riya@gmail.com"))
+        two.add(Pair("julia", "julia@julia.me"))
+        two.add(Pair("julia", "sjulia@gmail.com"))
+        two.add(Pair("julia", "julia@gmail.com"))
+        two.add(Pair("samantha", "samantha@gmail.com"))
+        two.add(Pair("tanya", "tanya@gmail.com"))
+        two.add(Pair("riya", "ariya@gmail.com"))
+        two.add(Pair("julia", "bjulia@julia.me"))
+        two.add(Pair("julia", "csjulia@gmail.com"))
+        two.add(Pair("julia", "djulia@gmail.com"))
+        two.add(Pair("samantha", "esamantha@gmail.com"))
+        two.add(Pair("tanya", "ftanya@gmail.com"))
+        two.add(Pair("riya", "riya@live.com"))
+        two.add(Pair("julia", "julia@live.com"))
+        two.add(Pair("julia", "sjulia@live.com"))
+        two.add(Pair("julia", "julia@live.com"))
+        two.add(Pair("samantha", "samantha@live.com"))
+        two.add(Pair("tanya", "tanya@live.com"))
+        two.add(Pair("riya", "ariya@live.com"))
+        two.add(Pair("julia", "bjulia@live.com"))
+        two.add(Pair("julia", "csjulia@live.com"))
+        two.add(Pair("julia", "djulia@live.com"))
+        two.add(Pair("samantha", "esamantha@live.com"))
+        two.add(Pair("tanya", "ftanya@live.com"))
+        two.add(Pair("riya", "gmail@riya.com"))
+        two.add(Pair("priya", "priya@gmail.com"))
+        two.add(Pair("preeti", "preeti@gmail.com"))
+        two.add(Pair("alice", "alice@alicegmail.com"))
+        two.add(Pair("alice", "alice@gmail.com"))
+        two.add(Pair("alice", "gmail.alice@gmail.com"))
+
+        two.forEach {
+            if(it.second.contains("@gmail.com")) {
+                list.add(it.first)
+            }
+        }
+
+
+        list.sorted().forEach { println(it) }
+    }
+    // endregion
+
     // region day 26
     @Test
     fun day26_nestedLogic() {
@@ -21,32 +84,32 @@ class HackerRankKotlin {
 //        println(calculator(intArrayOf(1, 1, 2010), intArrayOf(31, 12, 2009)))
     }
 
-    private fun calculator(actualDate: IntArray, expectedDate: IntArray) : Int {
+    private fun calculator(actualDate: IntArray, expectedDate: IntArray): Int {
         var fine = 0
-        val lateYear = (actualDate[2]-expectedDate[2])
-        val lateMonth = (actualDate[1]-expectedDate[1])
-        val lateDay = (actualDate[0]-expectedDate[0])
+        val lateYear = (actualDate[2] - expectedDate[2])
+        val lateMonth = (actualDate[1] - expectedDate[1])
+        val lateDay = (actualDate[0] - expectedDate[0])
 
         println("lateYear = $lateYear, lateMonth = $lateMonth, lateDay = $lateDay")
 
         if (lateYear > 0) {
             fine += 10000
             return fine
-        } else if( lateYear < 0){
+        } else if (lateYear < 0) {
             return 0
         }
 
-        if(lateMonth > 0) {
-            fine += 500*lateMonth
+        if (lateMonth > 0) {
+            fine += 500 * lateMonth
             return fine
-        } else if( lateMonth < 0){
+        } else if (lateMonth < 0) {
             return 0
         }
 
-        if(lateDay > 0) {
-            fine += 15*lateDay
+        if (lateDay > 0) {
+            fine += 15 * lateDay
             return fine
-        } else if( lateDay < 0){
+        } else if (lateDay < 0) {
             return 0
         }
         return fine
@@ -91,7 +154,7 @@ class HackerRankKotlin {
 
         println("Array is sorted in $totalSwap swaps.")
         println("First Element: ${a[0]}")
-        println("Last Element: ${a[n-1]}")
+        println("Last Element: ${a[n - 1]}")
     }
     // endregion
 
@@ -110,13 +173,13 @@ class HackerRankKotlin {
         val map: HashMap<Int, Int> = LinkedHashMap()
         arr.sortedArrayDescending().forEachIndexed { index, i ->
 //            println("index = $index, i = $i")
-            map[i] = map.getOrDefault(i, 0)+1
+            map[i] = map.getOrDefault(i, 0) + 1
         }
 
         var maxValue = 0
-        for((key, value) in map.entries) {
+        for ((key, value) in map.entries) {
 //            println("key = $key value = $value")
-            if(maxValue < value) {
+            if (maxValue < value) {
                 maxValue = value
             }
         }
@@ -155,7 +218,7 @@ class HackerRankKotlin {
 
         if (inputRow == 4 && inputColumn == 0) {
             return mutableListOf()
-        } else if(inputColumn == 4) {
+        } else if (inputColumn == 4) {
             catchMaxValue(arr, inputRow + 1, 0)
             return mutableListOf()
         } else {
@@ -168,9 +231,9 @@ class HackerRankKotlin {
 
                 result += arr[inputRow + 2][column]
 
-                if(column == inputColumn+2) {
+                if (column == inputColumn + 2) {
                     day11_2d_arrays.add(result)
-                    catchMaxValue(arr, inputRow, inputColumn+1)
+                    catchMaxValue(arr, inputRow, inputColumn + 1)
                     break
                 }
             }
@@ -231,7 +294,7 @@ class HackerRankKotlin {
         println(result)
     }
 
-    private fun factorial(n: Int): Int = if(n == 1) 1 else n * factorial(n-1)
+    private fun factorial(n: Int): Int = if (n == 1) 1 else n * factorial(n - 1)
 
     @Test
     fun day8_dictionaries_and_maps() {
