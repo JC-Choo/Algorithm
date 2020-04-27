@@ -7,6 +7,48 @@ import kotlin.collections.LinkedHashMap
 
 class HackerRankKotlin {
 
+    // region day 29
+    @Test
+    fun day29_Bitwise_AND() {
+//        val scan = Scanner(System.`in`)
+//        val t = scan.nextLine().trim().toInt()
+//
+//        for (tItr in 1..t) {
+//            val nk = scan.nextLine().split(" ")
+//            val n = nk[0].trim().toInt()
+//            val k = nk[1].trim().toInt()
+//        }
+
+//        println(bitwiseAND(5, 2))
+//        println(bitwiseAND(8, 5))
+//        println(bitwiseAND(2, 2))
+        println(bitwiseAND(773,29))
+        println(bitwiseAND(159,117))
+        println(bitwiseAND(928,443))
+        println(bitwiseAND(150,10))
+    }
+
+    private fun bitwiseAND(n: Int, k: Int): Int {
+        var result = 0
+        val a: MutableList<Int> = mutableListOf()
+        for (i in 0 until n) {
+            a.add(i + 1)
+        }
+
+        for (i in 0 until a.size - 1) {
+            result = i
+            for (j in i + 1 until a.size) {
+                val b = a[i] and a[j]
+                if (b >= k) {
+                    return result
+                }
+            }
+        }
+
+        return result
+    }
+    // endregion
+
     // region day 28
     @Test
     fun day28_RegEx_Patterns_andIntroToDatabase() {
@@ -59,7 +101,7 @@ class HackerRankKotlin {
         two.add(Pair("alice", "gmail.alice@gmail.com"))
 
         two.forEach {
-            if(it.second.contains("@gmail.com")) {
+            if (it.second.contains("@gmail.com")) {
                 list.add(it.first)
             }
         }
