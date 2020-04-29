@@ -19,9 +19,6 @@ class HackerRankKotlin {
 //            val k = nk[1].trim().toInt()
 //        }
 
-//        println(bitwiseAND(5, 2))
-//        println(bitwiseAND(8, 5))
-//        println(bitwiseAND(2, 2))
         println(bitwiseAND(773,29))
         println(bitwiseAND(159,117))
         println(bitwiseAND(928,443))
