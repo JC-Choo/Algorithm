@@ -3,6 +3,8 @@ package com.example.cnwlc.algorithm;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.cnwlc.algorithm.coding_dictionary.RamenCook;
+
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,6 +15,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         programmers();
+        RamenCook ramenCook = new RamenCook(10);
+        new Thread(ramenCook, "A").start();
+        new Thread(ramenCook, "B").start();
+        new Thread(ramenCook, "C").start();
+        new Thread(ramenCook, "D").start();
     }
 
     private void programmers() {
