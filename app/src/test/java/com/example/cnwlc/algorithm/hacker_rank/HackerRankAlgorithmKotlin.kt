@@ -2,8 +2,37 @@ package com.example.cnwlc.algorithm.hacker_rank
 
 import org.junit.Test
 import java.util.*
+import kotlin.collections.HashMap
+import kotlin.collections.LinkedHashMap
 
 class HackerRankAlgorithmKotlin {
+
+    @Test
+    fun bear_and_steady_gene() {
+//        val scan = Scanner(System.`in`)
+//        val n = scan.nextLine().trim().toInt()
+//        val gene = scan.nextLine()
+//        val result = steadyGene(gene)
+//        println(result)
+        println(steadyGene("GAAATAAA"))
+    }
+
+    private fun steadyGene(gene: String): Int {
+        // GTCA 가 n/4개씩!
+        val alphabetCount = gene.length/4
+        val map: HashMap<String, Int> = LinkedHashMap()
+        gene.forEach {
+            println("it = ${it.toString()}")
+            map[it.toString()] = map.getOrDefault(it.toString(), 0)+1
+        }
+        println(map.toString())
+        for (key in map.keys) {
+            println("key = $key, value = ${map[key]}")
+        }
+
+        return 0
+    }
+
     @Test
     fun strings_palindromeIndex() {
 //        val scan = Scanner(System.`in`)
