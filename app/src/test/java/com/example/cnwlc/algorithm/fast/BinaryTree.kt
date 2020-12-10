@@ -1,5 +1,10 @@
 package com.example.cnwlc.algorithm.fast
 
+class Node(var value: Int) {
+    var leftChild: Node? = null
+    var rightChild: Node? = null
+}
+
 class BinaryTree {
     var rootNode: Node? = null
 
@@ -12,15 +17,23 @@ class BinaryTree {
             return
         }
 
+        println()
+        println("element = $element")
+        println("rootNode = ${rootNode?.value}")
         var head = rootNode
+        println("head = ${head?.value}")
+        println("-----------while")
         var currentNode: Node?
         while (true) {
             currentNode = head
+            println("currentNode = ${currentNode?.value}, head = ${head?.value}")
 
             if (head != null) {
+                println("head.value > element = ${head.value > element}")
                 // 현재의 루트보다 작은 경우, 왼쪽부터 탐색
                 if (head.value > element) {
                     head = head.leftChild
+                    println("head = $head")
 
                     if (head == null) {
                         /*
@@ -28,14 +41,17 @@ class BinaryTree {
                         현재 currenNode head를 가리키고 있다.
                         */
                         currentNode?.leftChild = Node(element)
+                        println("currentNode.leftChild = ${currentNode?.leftChild?.value}")
                         break
                     }
                 } else {
                     // 현재의 루트보다 큰 경우, 오른쪽으로 탐색을 한다.
                     head = head.rightChild
+                    println("head = $head")
 
                     if (head == null) {
                         currentNode?.rightChild = Node(element)
+                        println("currentNode.rightChild = ${currentNode?.rightChild?.value}")
                         break
                     }
                 }
@@ -65,6 +81,8 @@ class BinaryTree {
                 }
             }
 
+            println("removeNode.leftChild = ${removeNode.leftChild}, removeNode.rightChild = ${removeNode.rightChild}")
+            println("removeNode = ${removeNode.value}, rootNode = ${rootNode?.value}, parentOfRemoveNode = ${parentOfRemoveNode?.value}")
             // 자식 노드가 모두 없을 때
             if (removeNode.leftChild == null && removeNode.rightChild == null) {
                 // 삭제 대상이 트리의 루트일 때
@@ -200,9 +218,4 @@ class BinaryTree {
             preorderTree(root.rightChild, depth+1)
         }
     }
-}
-
-class Node(var value: Int) {
-    var leftChild: Node? = null
-    var rightChild: Node? = null
 }
