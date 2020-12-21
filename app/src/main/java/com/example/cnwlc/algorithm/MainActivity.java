@@ -15,15 +15,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TestAccessController testAccessController = new TestAccessController();
-        testAccessController.test02 = 20;
-        testAccessController.print02();
-        testAccessController.toString();
-        System.out.println("--------------------------");
-
-        CallAccessController cac = new CallAccessController();
-        cac.main();
-
 //        programmers();
 //        RamenCook ramenCook = new RamenCook(10);
 //        new Thread(ramenCook, "A").start();
