@@ -3,7 +3,8 @@ package com.example.cnwlc.algorithm;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.cnwlc.algorithm.coding_dictionary.RamenCook;
+import com.example.cnwlc.algorithm.test.CallAccessController;
+import com.example.cnwlc.algorithm.test.TestAccessController;
 
 import java.util.Arrays;
 
@@ -14,12 +15,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        programmers();
-        RamenCook ramenCook = new RamenCook(10);
-        new Thread(ramenCook, "A").start();
-        new Thread(ramenCook, "B").start();
-        new Thread(ramenCook, "C").start();
-        new Thread(ramenCook, "D").start();
+        TestAccessController testAccessController = new TestAccessController();
+        testAccessController.test02 = 20;
+        testAccessController.print02();
+        testAccessController.toString();
+        System.out.println("--------------------------");
+
+        CallAccessController cac = new CallAccessController();
+        cac.main();
+
+//        programmers();
+//        RamenCook ramenCook = new RamenCook(10);
+//        new Thread(ramenCook, "A").start();
+//        new Thread(ramenCook, "B").start();
+//        new Thread(ramenCook, "C").start();
+//        new Thread(ramenCook, "D").start();
     }
 
     private void programmers() {
