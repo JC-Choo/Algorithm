@@ -7,17 +7,20 @@ class MyProgram {
     public fun setModeAll() {
         searchButton.setSearchStrategy(SearchStrategyAll())
     }
-    public fun setModeImage () {
+
+    public fun setModeImage() {
         searchButton.setSearchStrategy(SearchStrategyImage())
     }
-    public fun setModeNews () {
+
+    public fun setModeNews() {
         searchButton.setSearchStrategy(SearchStrategyNews())
     }
-    public fun setModeMap () {
+
+    public fun setModeMap() {
         searchButton.setSearchStrategy(SearchStrategyMap())
     }
     ​
-    public fun testProgram () {
+    public fun testProgram() {
         searchButton.onClick()   // "SEARCH ALL" 출력
         setModeImage()           // 이미지검색 모드로
         searchButton.onClick()   // "SEARCH IMAGE" 출력
