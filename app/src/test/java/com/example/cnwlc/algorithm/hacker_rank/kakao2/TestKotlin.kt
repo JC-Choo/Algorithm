@@ -10,19 +10,19 @@ class TestKotlin {
 
     @Test
     fun ifKakao() {
-//        val startTime00 = arrayOf(1, 3, 5)
-//        val runningTime00 = arrayOf(2, 2, 2)    // 3
-//        val startTime01 = arrayOf(1)
-//        val runningTime01 = arrayOf(1)  // 1
-//        val startTime02 = arrayOf(1, 1, 1, 1, 4)
-//        val runningTime02 = arrayOf(10, 3, 6, 4, 2) // 2
-        val startTime03 = arrayOf(978,409,229,934,299,982,636,14,866,815,64,537,426,670,116,95,630)
-        val runningTime03 = arrayOf(502,518,196,106,405,452,299,189,124,506,883,753,567,717,338,439,145) // 4
+        val startTime00 = arrayOf(1, 3, 5)
+        val runningTime00 = arrayOf(2, 2, 2)    // 3
+        val startTime01 = arrayOf(1)
+        val runningTime01 = arrayOf(1)  // 1
+        val startTime02 = arrayOf(1, 1, 1, 1, 4)
+        val runningTime02 = arrayOf(10, 3, 6, 4, 2) // 2
+//        val startTime03 = arrayOf(978,409,229,934,299,982,636,14,866,815,64,537,426,670,116,95,630)
+//        val runningTime03 = arrayOf(502,518,196,106,405,452,299,189,124,506,883,753,567,717,338,439,145) // 4
 
-//        println(q3(startTime00, runningTime00))
-//        println(q3(startTime01, runningTime01))
-//        println(q3(startTime02, runningTime02))
-        println(q3(startTime03, runningTime03))
+        println(q3(startTime00, runningTime00))
+        println(q3(startTime01, runningTime01))
+        println(q3(startTime02, runningTime02))
+//        println(q3(startTime03, runningTime03))
     }
 
     fun q3(start_time: Array<Int>, running_time: Array<Int>): Int {
