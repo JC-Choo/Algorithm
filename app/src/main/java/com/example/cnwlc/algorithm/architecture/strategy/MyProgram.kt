@@ -19,7 +19,7 @@ class MyProgram {
     public fun setModeMap() {
         searchButton.setSearchStrategy(SearchStrategyMap())
     }
-    ​
+
     public fun testProgram() {
         searchButton.onClick()   // "SEARCH ALL" 출력
         setModeImage()           // 이미지검색 모드로
