@@ -19,11 +19,7 @@ class MyProgram {
     public fun setModeMap() {
         searchButton.setSearchStrategy(SearchStrategyMap())
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> 24d5888e67edbddfc5a3017180d6bfa4bae7bbf1
     public fun testProgram() {
         searchButton.onClick()   // "SEARCH ALL" 출력
         setModeImage()           // 이미지검색 모드로
