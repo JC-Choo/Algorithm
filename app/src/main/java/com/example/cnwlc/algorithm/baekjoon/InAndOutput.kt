@@ -1,4 +1,4 @@
-package com.example.cnwlc.algorithm.back
+package com.example.cnwlc.algorithm.baekjoon
 
 import java.io.BufferedReader
 import java.io.InputStreamReader
