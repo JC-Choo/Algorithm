@@ -39,7 +39,19 @@
       </value>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+=======
+<<<<<<< HEAD
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+=======
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
+<<<<<<< HEAD
+>>>>>>> c2722b4... Add algorithm
+=======
+>>>>>>> 5278e0f85572108a1e884317685816ef36873e9c
+>>>>>>> 24d5888e67edbddfc5a3017180d6bfa4bae7bbf1
+>>>>>>> 0a39a6eb67464867dce7506745d8f240b7e25f85
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
