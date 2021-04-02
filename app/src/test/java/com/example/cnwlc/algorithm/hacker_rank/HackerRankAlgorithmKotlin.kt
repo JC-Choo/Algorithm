@@ -23,22 +23,22 @@ class HackerRankAlgorithmKotlin {
         var result = -1
         var isNext = false
 
-        for(i in s.indices) {
-            if(s[i] != s[s.length-i-1]) {
-                val strFromFront = s.substring(i+1, s.length-i)
+        for (i in s.indices) {
+            if (s[i] != s[s.length - i - 1]) {
+                val strFromFront = s.substring(i + 1, s.length - i)
                 result = i
-                for(index in strFromFront.indices) {
-                    if(strFromFront[index] != strFromFront[strFromFront.length-index-1]) {
+                for (index in strFromFront.indices) {
+                    if (strFromFront[index] != strFromFront[strFromFront.length - index - 1]) {
                         isNext = true
                         break
                     }
                 }
 
-                if(isNext) {
-                    val strFromBack = s.substring(i, s.length-i-1)
-                    result = s.length-i-1
-                    for(index in strFromBack.indices) {
-                        if(strFromBack[index] != strFromBack[strFromBack.length-index-1]) {
+                if (isNext) {
+                    val strFromBack = s.substring(i, s.length - i - 1)
+                    result = s.length - i - 1
+                    for (index in strFromBack.indices) {
+                        if (strFromBack[index] != strFromBack[strFromBack.length - index - 1]) {
                             result = -2
                             break
                         }
@@ -57,16 +57,16 @@ class HackerRankAlgorithmKotlin {
         var resultFromRightToRight = 0
         arr.forEachIndexed { index, arr2 ->
             arr2.forEachIndexed { index2, i ->
-                if(index == index2) {
+                if (index == index2) {
                     resultFromLeftToLeft += arr[index][index2]
                 }
-                if(arr.size-(index+1) == index2) {
+                if (arr.size - (index + 1) == index2) {
                     resultFromRightToRight += arr[index][index2]
                 }
             }
         }
 
-        return Math.abs(resultFromLeftToLeft-resultFromRightToRight)
+        return Math.abs(resultFromLeftToLeft - resultFromRightToRight)
     }
 
     @Test
@@ -75,7 +75,7 @@ class HackerRankAlgorithmKotlin {
         val arr = Array<Array<Int>>(n, { Array<Int>(n, { 0 }) })
 
         for (i in 0 until n) {
-            arr[i] = readLine()!!.trimEnd().split(" ").map{ it.toInt() }.toTypedArray()
+            arr[i] = readLine()!!.trimEnd().split(" ").map { it.toInt() }.toTypedArray()
         }
 
         val result = diagonalDifference(arr)
@@ -99,8 +99,8 @@ class HackerRankAlgorithmKotlin {
 
     @Test
     fun algorithmsWarmUp_CompareTheTriplets() {
-        val a = readLine()!!.trimEnd().split(" ").map{ it.toInt() }.toTypedArray()
-        val b = readLine()!!.trimEnd().split(" ").map{ it.toInt() }.toTypedArray()
+        val a = readLine()!!.trimEnd().split(" ").map { it.toInt() }.toTypedArray()
+        val b = readLine()!!.trimEnd().split(" ").map { it.toInt() }.toTypedArray()
 
         val result = compareTriplets(a, b)
 
@@ -115,7 +115,7 @@ class HackerRankAlgorithmKotlin {
 
         val arCount = scan.nextLine().trim().toInt()
 
-        val ar = scan.nextLine().split(" ").map{ it.trim().toInt() }.toTypedArray()
+        val ar = scan.nextLine().split(" ").map { it.trim().toInt() }.toTypedArray()
 
         val result = simpleArraySum(ar)
 
