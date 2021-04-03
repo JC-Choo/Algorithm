@@ -10,7 +10,7 @@ import java.util.*
 object InAndOutput {
     @JvmStatic
     fun main(args: Array<String>) {
-        p11021()
+        p11721()
     }
 
     fun p2557() {
@@ -94,5 +94,50 @@ object InAndOutput {
             val b = number[1].toInt()
             println("Case #${i+1}: $a + $b = ${a+b}")
         }
+    }
+
+    fun p11718() {
+        val sc = Scanner(System.`in`)
+        while (sc.hasNext()) {
+            val text = sc.nextLine()
+            println(text)
+        }
+        sc.close()
+    }
+
+    fun p11719() {
+        val sc = Scanner(System.`in`)
+        while (sc.hasNext()) {
+            val text = sc.nextLine()
+            println(text)
+        }
+        sc.close()
+    }
+
+    fun p11720() {
+        val sc = Scanner(System.`in`)
+        val N = sc.nextInt()
+        val s = sc.next()
+        var sum = 0
+        for (i in 0 until N) {
+            sum += s[i].toString().toInt()
+        }
+        println(sum)
+        sc.close()
+    }
+
+    fun p11721() {
+        val sc = Scanner(System.`in`)
+        val text = sc.nextLine()
+        var str10 = ""
+        for (i in text.indices) {
+            str10 += text[i].toString()
+            if (str10.length == 10) {
+                println(str10)
+                str10 = ""
+            }
+        }
+        println(str10)
+        sc.close()
     }
 }
