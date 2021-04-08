@@ -10,7 +10,7 @@ import java.util.*
 object InAndOutput {
     @JvmStatic
     fun main(args: Array<String>) {
-        p11721()
+        p2739()
     }
 
     fun p2557() {
@@ -139,5 +139,29 @@ object InAndOutput {
         }
         println(str10)
         sc.close()
+    }
+
+    fun p2741() {
+        val sc = Scanner(System.`in`)
+        val data = sc.nextInt()
+        for (i in 1 .. data) {
+            println(i)
+        }
+    }
+
+    fun p2742() {
+        val sc = Scanner(System.`in`)
+        val data = sc.nextInt()
+        for (i in data downTo 1) {
+            println(i)
+        }
+    }
+
+    fun p2739() {
+        val sc = Scanner(System.`in`)
+        val data = sc.nextInt()
+        for (i in 1 .. 9) {
+            println("$data * $i = ${data*i}")
+        }
     }
 }
