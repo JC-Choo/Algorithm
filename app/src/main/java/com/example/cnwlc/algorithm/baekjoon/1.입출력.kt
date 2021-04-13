@@ -7,10 +7,10 @@ import java.util.*
 /**
  * https://steady-coding.tistory.com/260
  */
-object InAndOutput {
+object 입출력 {
     @JvmStatic
     fun main(args: Array<String>) {
-        p2739()
+        p10818()
     }
 
     fun p2557() {
@@ -163,5 +163,48 @@ object InAndOutput {
         for (i in 1 .. 9) {
             println("$data * $i = ${data*i}")
         }
+    }
+
+    fun p1924() {
+        val months = intArrayOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+        val daysOfMonth = intArrayOf(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+        val days = arrayOf("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT")
+
+        val sc = Scanner(System.`in`)
+        val month = sc.nextInt()
+        val day = sc.nextInt()
+
+        var sum = 0
+        for (i in 0 until month) {
+            sum += daysOfMonth[i]
+        }
+        sum += day
+
+        println(days[sum%7])
+    }
+
+    fun p8393() {
+        val sc = Scanner(System.`in`)
+        val n = sc.nextInt()
+        var sum = 0
+        for (i in 1..n) {
+            sum += i
+        }
+        println(sum)
+    }
+
+    fun p10818() {
+        val sc = Scanner(System.`in`)
+        val n = sc.nextInt()
+
+        val list = mutableListOf<Int>()
+
+        for (i in 0 until n) {
+            list.add(sc.nextInt())
+        }
+
+        val result = list.sorted()
+
+        println(""+result[0]+" "+result[result.size-1])
     }
 }
