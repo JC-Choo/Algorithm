@@ -3,11 +3,10 @@ package com.example.cnwlc.algorithm.sk
 object Test {
     @JvmStatic
     fun main(args: Array<String>) {
-        problem03()
-//        println(problem02("4 5 6 - 7 +"))   // 8
-//        println(problem02("13 DUP 4 POP 5 DUP + DUP + -"))  // 7
-//        println(problem02("5 6 + -")) // -1
-//        println(problem02("3 DUP 5 - -")) // -1
+        println(problem02("4 5 6 - 7 +"))   // 8
+        println(problem02("13 DUP 4 POP 5 DUP + DUP + -"))  // 7
+        println(problem02("5 6 + -")) // -1
+        println(problem02("3 DUP 5 - -")) // -1
 
 //        println(problem01("Codility We test coders", 14)) // Codility We
 //        println(problem01("Why not", 100)) // Why not
