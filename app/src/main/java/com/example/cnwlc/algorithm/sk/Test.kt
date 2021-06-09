@@ -8,13 +8,13 @@ object Test {
         println(problem02("5 6 + -")) // -1
         println(problem02("3 DUP 5 - -")) // -1
 
-//        println(problem01("Codility We test coders", 14)) // Codility We
-//        println(problem01("Why not", 100)) // Why not
-//        println(problem01("To crop or not to crop", 21)) // To crop or not to
+        println(problem01("Codility We test coders", 14)) // Codility We
+        println(problem01("Why not", 100)) // Why not
+        println(problem01("To crop or not to crop", 21)) // To crop or not to
 
-//        println(test01(intArrayOf(1, 3, 6, 4, 1, 2)))
-//        println(test01(intArrayOf(1, 2, 3)))
-//        println(test01(intArrayOf(-1, -3)))
+        println(test01(intArrayOf(1, 3, 6, 4, 1, 2)))
+        println(test01(intArrayOf(1, 2, 3)))
+        println(test01(intArrayOf(-1, -3)))
     }
 
     private fun problem03() {
