@@ -36,6 +36,8 @@ object Commerce {
     fun problem02(needs: Array<IntArray>, r: Int): Int {
         var answer = 0
 
+        needs
+
         return answer
     }
 
