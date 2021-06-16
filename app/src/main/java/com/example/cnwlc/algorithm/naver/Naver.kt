@@ -15,8 +15,8 @@ object Naver {
         println(problem3("abba"))   // false
 
         println(problem4(6, 1, 1))  // aabaacaa or aacaabaa
-//        println(problem4(1, 3, 1))  // abbcb or bcbab or bacbb
-//        println(problem4(0, 1, 8))  // ccbcc
+        println(problem4(1, 3, 1))  // abbcb or bcbab or bacbb
+        println(problem4(0, 1, 8))  // ccbcc
     }
 
     fun problem4(A: Int, B: Int, C: Int): String {
